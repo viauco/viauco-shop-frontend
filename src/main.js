@@ -14,6 +14,7 @@ Vue.use(Toasted);
 Vue.use(CKEditor);
 
 UsersService.init();
+//test to push braanch
 const user = UsersService.getUser();
 if (user && user.username) {
     store.commit('auth/' + AuthAction.local.SET_USER, user);
