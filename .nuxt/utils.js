@@ -133,7 +133,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"API_URL":"http://localhost:8080/api"}
+      env: {"API_URL":"https://viauco-shop-api.herokuapp.com/api"}
     }
     // Only set once
     if (context.req) {
