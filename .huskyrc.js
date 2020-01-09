@@ -2,10 +2,10 @@ const tasks = arr => arr.join(' && ')
 
 module.exports = {
   'hooks': {
-    'pre-commit': tasks([
+    'pre-commit --no-verify': tasks([
       'lint-staged'
     ]),
-    'pre-push': tasks([
+    'pre-push --no-verify': tasks([
       'yarn test:unit'
     ])
   }
