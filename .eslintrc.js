@@ -30,6 +30,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-var-requires': 0,
+    "@typescript-eslint/no-empty-function": "error",
+    "no-empty-function": "off",
     'handle-callback-err': 1,
     'prefer-promise-reject-errors': 0,
     'import/no-duplicates': ['warning'],
