@@ -77,6 +77,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/nuxt-client-init.client.js',
     '@/plugins/mixin',
     '@/plugins/vuelidate',
   ],

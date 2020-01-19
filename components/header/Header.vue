@@ -22,24 +22,24 @@
         
         <div class="navbar-end">
           <div class="navbar-item social">
-            <a href="#" class="icon" :title="facebookTooltip">
+            <a href="#" class="icon" :title="$t('FacebookTooltip')">
               <i class="fa fa-facebook"></i>
             </a>
-            <a href="#" class="icon" :title="twitterTooltip">
+            <a href="#" class="icon" :title="$t('TwitterTooltip')">
               <i class="fa fa-twitter"></i>
             </a>
-            <a href="#" class="icon" :title="instagramTooltip">
+            <a href="#" class="icon" :title="$t('InstagramTooltip')">
               <i class="fa fa-instagram"></i>
             </a>
-            <a href="#" class="icon" :title="linkedinTooltip">
+            <a href="#" class="icon" :title="$t('LinkedinTooltip')">
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
-          <div class="navbar-item shopping-cart" @click="showCheckoutModal">
+          <div class="navbar-item shopping-cart" @click="onGloalEmit('OnDialogIndex', {index: 3})">
             <span class="icon">
               <i class="fa fa-shopping-cart"></i>
             </span>
-            <span :class="[numProductsAdded > 0 ? 'tag is-info' : '']">{{ numProductsAdded }}</span>
+            <span :class="[cartLength > 0 ? 'tag is-info' : '']">{{ cartLength }}</span>
           </div>
         </div>
       </div>
@@ -66,11 +66,6 @@
 
     data () {
       return {
-        linkedinTooltip: 'Follow us on Linkedin',
-        facebookTooltip: 'Follow us on Facebook',
-        twitterTooltip: 'Follow us on Twitter',
-        instagramTooltip: 'Follow us on Instagram',
-        isCheckoutActive: false,
         isMenuOpen: false
       }
     },
@@ -81,15 +76,16 @@
     },
 
     computed: {
-      numProductsAdded () {
-        return this.$store.getters.productsAdded.length;
+      cart(){
+        return this.$store.state.cart.productions
+      },
+      cartLength () {
+        return this.cart ? this.cart.length : 0;
       }
     },
 
     methods: {
-      showCheckoutModal () {
-        this.$store.commit('showCheckoutModal', true);
-      }
+      
     }
   };
 </script>

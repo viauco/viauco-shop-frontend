@@ -3,23 +3,23 @@
     <header class="modal-card-head">
         <p class="modal-card-title">{{ $t('Login') }}</p>
     </header>
-    <form @submit="onLogin" action="#" method="post">
+    <form @submit.prevent="onLogin" method="post">
         <section class="modal-card-body">
             <div>
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
                         <input
                             class="input"
-                            :class="{ 'is-danger': $v.email.$error }"
+                            :class="{ 'is-danger': $v.email.$invalid }"
                             type="email"
-                            :placeholder="$t('email')"
+                            :placeholder="$t('Email')"
                             v-model.trim="$v.email.$model"
                         >
                         <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                         </span>
-                        <span v-if="$v.email.$error" class="icon is-small is-right">
-                            <i :class="[$v.email.$error ? 'fa fa-exclamation-circle' : 'fa fa-check']"></i>
+                        <span v-if="$v.email.$invalid" class="icon is-small is-right">
+                            <i :class="[$v.email.$invalid ? 'fa fa-exclamation-circle' : 'fa fa-check']"></i>
                         </span>
                     </p>
                     <p v-if="!$v.email.required" class="help is-danger">{{ $t('FieldIsRequired', { attr: $t('Email')}) }}</p>
@@ -29,7 +29,7 @@
                     <p class="control has-icons-left has-icons-right">
                         <input
                             class="input"
-                            :class="{'is-danger': $v.password.$error}"
+                            :class="{'is-danger': $v.password.$invalid}"
                             type="password"
                             :placeholder="$t('Password')"
                             v-model.trim="$v.password.$model"
@@ -37,16 +37,16 @@
                         <span class="icon is-small is-left">
                             <i class="fa fa-lock"></i>
                         </span>
-                        <span v-if="$v.password.$error" class="icon is-small is-right">
-                            <i :class="[$v.password.$error ? 'fa fa-exclamation-circle' : 'fa fa-check']"></i>
+                        <span v-if="$v.password.$invalid" class="icon is-small is-right">
+                            <i class='fa fa-exclamation-circle'></i>
                         </span>
                     </p>
                     <p v-if="!$v.password.required" class="help is-danger">{{ $t('FieldIsRequired', { attr: $t('Password') }) }}</p>
                 </div>
             </div>
         </section>
-        <footer class="modal-card-foot">
-            <button type="submit" :disabled="loading || $v.$invalid" class="button is-info">{{ $t('btnLogin') }}</button>
+        <footer class="modal-card-foot is-right flex-end">
+            <button type="submit" :disabled="loading || $v.$invalid" class="button is-info is-right" :class="{'is-loading': loading}">{{ $t('btnLogin') }}</button>
         </footer>
     </form>
 </div>

@@ -1,19 +1,17 @@
 <template>
   <div>
-    <VmHero></VmHero>
-    <VmProductsList></VmProductsList>
+    <VmHero />
+    <VmProductList />
   </div>
 </template>
 
 <script>
-import VmProductsList from '@/components/products_list/ProductsListContainer';
-import VmHero from '@/components/hero/Hero';
 
 export default {
-  name: 'index',
+  name: 'home',
   components: {
-    VmProductsList,
-    VmHero
+    VmProductList: () => import('@/components/product/ProductList'),
+    VmHero: () =>  import('@/components/hero/Hero')
   }
 };
 </script>

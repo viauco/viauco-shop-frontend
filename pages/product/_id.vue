@@ -74,7 +74,7 @@
 
 <script>
 export default {
-  name: 'product_detail-id',
+  name: 'ProductDetail',
 
   validate ({ params }) {
     return /^\d+$/.test(params.id)
@@ -86,22 +86,24 @@ export default {
       removeFromCartLabel: 'Remove from cart',
       addToFavouriteLabel: 'Add to favourite',
       removeFromFavouriteLabel: 'Remove from favourite',
-      product: {},
       selected: 1,
-      quantityArray: []
     };
   },
 
   mounted () {
-    this.product = this.$store.getters.getProductById(this.$route.params.id);
     this.selected = this.product.quantity;
-
-    for (let i = 1; i <= 20; i++) {
-      this.quantityArray.push(i);
-    }
   },
 
   computed: {
+    id() {
+      return this.$route.params.id;
+    },
+    product() {
+      return this.$store.getters.product.getProductById(this.id)
+    },
+    quantityArray() {
+      return Array(20).fill().map((x,i)=> i + 1)
+    },
     isAddedBtn () {
       return this.product.isAddedBtn;
     }

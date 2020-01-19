@@ -12,6 +12,7 @@
 <script>
 
 export default {
+    name: 'AppLayout',
     components: {
         VmHeader: () => import('@/components/header/Header'),
         VmFooter: () => import('@/components/footer/Footer'),
