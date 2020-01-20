@@ -55,8 +55,8 @@
               <p><strong>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</strong></p>
             </div>
             <div class="select is-rounded is-small is-pulled-right">
-              <select @change="onSelectQuantity(product.id)" v-model="selected">
-                <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
+              <select @change="onSelectQuantity(product.id)" v-model="quanlity">
+                <option v-for="q in quantityArray" :value="q" :key="`list-quanlity-${q}`">{{ q }}</option>
               </select>
             </div>
           </div>
@@ -86,12 +86,12 @@ export default {
       removeFromCartLabel: 'Remove from cart',
       addToFavouriteLabel: 'Add to favourite',
       removeFromFavouriteLabel: 'Remove from favourite',
-      selected: 1,
+      quanlity: 1,
     };
   },
 
   mounted () {
-    this.selected = this.product.quantity;
+    this.quanlity = this.product.quantity;
   },
 
   computed: {
@@ -129,7 +129,7 @@ export default {
     onSelectQuantity (id) {
       let data = {
         id: id,
-        quantity: this.selected
+        quantity: this.quanlity
       }
       this.$store.commit('quantity', data);
     },

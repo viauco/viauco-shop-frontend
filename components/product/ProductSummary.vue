@@ -40,7 +40,7 @@
             <button class="button is-text" v-if="isAddedToCart" @click="removeFromCart(product)">{{ $t('RemoveFromCartLabel') }}</button>
           </div>
            <div class="select is-rounded is-small">
-            <select @change="onSelectQuantity(product)" v-model="selected">
+            <select @change="onSelectQuantity(product)" v-model="quanlity">
               <option v-for="quantity in quantityArray" :value="quantity" :key="`product-element-${quantity}`">{{ quantity }}</option>
             </select>
           </div>
@@ -80,14 +80,14 @@ export default {
   },
   data () {
     return {
-      selected: 1,
+      quanlity: 1,
     }
   },
 
   mounted () {
     
     if (this.$props.product.quantity > 1) {
-      this.selected = this.$props.product.quantity;
+      this.quanlity = this.$props.product.quantity;
     }
   },
 
@@ -135,7 +135,7 @@ export default {
 
   methods: {
     addToCart (product) {
-      this.$store.dispatch('card/addToCart', {product: product, quantity: this.selected});
+      this.$store.dispatch('card/addToCart', {product: product, quantity: this.quanlity});
     },
     removeFromCart (product) {
       this.$store.dispatch('card/removeFromCart', product);
@@ -153,7 +153,7 @@ export default {
     },
     onSelectQuantity (product) {
       if( this.isAddedToCart ) {
-        this.$store.dispatch('card/addToCard',{ product: product, quanlity: this.selected});
+        this.$store.dispatch('card/addToCard',{ product: product, quanlity: this.quanlity});
       }
     }
   }

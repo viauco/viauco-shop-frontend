@@ -4,7 +4,7 @@
   "description": "Viauco shop",
   "author": "Viauco <viauco@viauco.com>",
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --port 3333",
     "production": "nuxt build",
     "generate": "nuxt generate"
   },
