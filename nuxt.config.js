@@ -54,7 +54,10 @@ module.exports = {
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
-    ]
+    ],
+    bodyAttrs: {
+      class: 'scroller app---body'
+    }
   },
 
   /*
@@ -66,6 +69,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/assets/css/reset.css',
     {
       src: 'bulma/bulma.sass',
       lang: 'sass'
