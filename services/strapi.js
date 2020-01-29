@@ -10,6 +10,7 @@ const storeConfig = {
         key: process.env.AUTH_KEY || 'jwt'
     },
 }
-const strapi = new Strapi(process.env.API_URL, storeConfig);
+let apiUrl = process.env.API_URL || '';
+const strapi = new Strapi(apiUrl, storeConfig);
 
 export default strapi;

@@ -3,7 +3,7 @@
     <header class="modal-card-head">
         <p class="modal-card-title">{{ $t('SignUpTitle') }}</p>
     </header>
-    <form @submit.prevent="checkForm" method="post">
+    <form method="post">
         <section class="modal-card-body">
             <div>
                 <div class="field">

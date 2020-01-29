@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <nuxt-link :to="{ name: 'index' }" class="navbar-item">
+        <nuxt-link :to="localePath({ name: 'index' })" class="navbar-item">
           <h1 class="title is-3 is-flex-mobile"></h1>
         </nuxt-link>
 
@@ -22,16 +22,16 @@
         
         <div class="navbar-end">
           <div class="navbar-item social">
-            <a href="#" class="icon" :title="$t('FacebookTooltip')">
+            <a href="#" target="_blank" class="icon" :title="$t('FacebookTooltip')">
               <i class="fa fa-facebook"></i>
             </a>
-            <a href="#" class="icon" :title="$t('TwitterTooltip')">
+            <a href="#" target="_blank" class="icon" :title="$t('TwitterTooltip')">
               <i class="fa fa-twitter"></i>
             </a>
-            <a href="#" class="icon" :title="$t('InstagramTooltip')">
+            <a href="#" target="_blank" class="icon" :title="$t('InstagramTooltip')">
               <i class="fa fa-instagram"></i>
             </a>
-            <a href="#" class="icon" :title="$t('LinkedinTooltip')">
+            <a href="#" target="_blank" class="icon" :title="$t('LinkedinTooltip')">
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
@@ -77,7 +77,7 @@
 
     computed: {
       cart(){
-        return this.$store.state.cart.productions
+        return this.$store.state.cart.products
       },
       cartLength () {
         return this.cart ? this.cart.length : 0;

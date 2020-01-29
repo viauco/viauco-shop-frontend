@@ -47,36 +47,15 @@
         </div>
       </div>
     </div>
-    <nuxt-link
-      class="details"
-      :to="localePath({
-        name: 'product-id',
-        params: {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          rating: product.ratings,
-          reviews: product.reviews,
-          isAddedBtn: product.isAddedBtn
-        }
-      })"
-    >
-    </nuxt-link>
   </div>
 </template>
 
 <script>
 import _ from 'lodash';
 export default {
-  name: 'ProductSummary',
+  name: 'ProductDetail',
   components: {
     AppRating: () => import('@/components/rating/index')
-  },
-  props: {
-    product: {
-      type: Object,
-      default: null
-    }
   },
   data () {
     return {
@@ -86,12 +65,21 @@ export default {
 
   mounted () {
     
-    if (this.$props.product.quantity > 1) {
-      this.quanlity = this.$props.product.quantity;
+    if (this.product && this.product.quantity) {
+      this.quanlity = this.product.quantity;
     }
   },
 
   computed: {
+    products () {
+      return this.$store.state.product.products;
+    },
+    id() {
+      return this.$route.params.id;
+    },
+    product() {
+      return this.products.find(product => product.id == this.id);
+    },
     quantityArray() {
       return Array(20).fill().map((x,i)=> i + 1)
     },
@@ -101,9 +89,7 @@ export default {
     arrFavourite() {
       return this.$store.state.favourite.products
     },
-    id() {
-      return this.product && this.product.id ? this.product.id : 0
-    },
+    
     isAddedToCart() {
       let index = _.findIndex(this.cart, (p) => {
         return p.product.id == this.id
@@ -135,7 +121,6 @@ export default {
 
   methods: {
     addToCart (product) {
-      console.log('add to card')
       this.$store.dispatch('cart/addToCart', {product: product, quantity: this.quanlity});
     },
     removeFromCart (product) {

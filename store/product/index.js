@@ -128,8 +128,6 @@ export const actions = {
     async init(context) {
         try{
             let products = await storage.get(productKey)
-            
-            console.log('>>>>>>>>>>>>>>>>>>',products)
             if( !products){
                 products = raw
             }

@@ -19,11 +19,14 @@ export const actions = {
     async init(context) {
         try{
             let products = await storage.get(farvouriteKey);
+            if( !products ){
+                products = []
+            }
             context.commit('SET_FAVOURITE', products)
         }catch(e){}
     },
     async addToFavourite(context, {product, quanlity}) {
-        let products = context.state.products;
+        let products = _.cloneDeep(context.state.products);
         let index = _.findIndex(products,(p) => {
             return p.product.id == product.id
         });
@@ -37,7 +40,7 @@ export const actions = {
         return Promise.resolve(true);
     },
     async removeFromFavourite(context, product) {
-        let products = context.state.products;
+        let products = _.cloneDeep(context.state.products);
         let index = _.findIndex(products,(p) => {
             return p.product.id == product.id
         });

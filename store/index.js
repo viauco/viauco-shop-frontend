@@ -59,6 +59,7 @@ export const actions = {
     },
     async login(context, params) {
         let response = await strapi.login( params.identifier, params.password)
+        console.log('>>>>>>>>>', response)
         context.commit("SET_AUTH", response.data)
         return Promise.resolve(response);
     },

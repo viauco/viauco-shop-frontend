@@ -3,7 +3,7 @@
     <header class="modal-card-head">
         <p class="modal-card-title">{{ $t('Login') }}</p>
     </header>
-    <form @submit.prevent="onLogin" method="post">
+    <form>
         <section class="modal-card-body">
             <div>
                 <div class="field">
@@ -46,7 +46,7 @@
             </div>
         </section>
         <footer class="modal-card-foot is-right flex-end">
-            <button type="submit" :disabled="loading || $v.$invalid" class="button is-info is-right" :class="{'is-loading': loading}">{{ $t('btnLogin') }}</button>
+            <button type="submit" :disabled="loading || $v.$invalid" class="button is-info is-right" :class="{'is-loading': loading}" @click="onLogin">{{ $t('btnLogin') }}</button>
         </footer>
     </form>
 </div>
@@ -62,6 +62,7 @@ export default {
         return {
             email: '',
             password: '',
+            loading: false
         };
     },
     validations: {
@@ -81,10 +82,11 @@ export default {
             }
             this.loading = true;
             this.$store.dispatch('login', {
-                email: this.email, password: this.password
+                identifier: this.email, 
+                password: this.password
             })
             .then( (response) => {
-                bus.$emit('onDialogIndex',{ index: 0})
+                //bus.$emit('onDialogIndex',{ index: 0})
             } )
             .catch( (error) => {
                 

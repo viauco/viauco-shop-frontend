@@ -19,11 +19,14 @@ export const actions = {
     async init(context) {
         try{
             let products = await storage.get(cartKey);
+            if( !products ){
+                products = []
+            }
             context.commit('SET_CART', products)
         }catch(e){}
     },
     async addToCart(context, {product, quanlity}) {
-        let products = context.state.products;
+        let products = _.cloneDeep(context.state.products);
         let index = _.findIndex(products,(p) => {
             return p.product.id == product.id
         });
@@ -37,7 +40,7 @@ export const actions = {
         return Promise.resolve(true);
     },
     async removeFromCart(context, product) {
-        let products = context.state.products;
+        let products = _.cloneDeep(context.state.products);
         let index = _.findIndex(products,(p) => {
             return p.product.id == product.id
         });
