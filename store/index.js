@@ -1,8 +1,8 @@
 import Promise from 'bluebird';
-import strapi from '@/services/strapi'
+import repository from '@/services/repository'
 import storage from '@/services/storage'
 
-let authKey = process.env.VIAUCO_AUTH_KEY || '__vid';
+let authKey = process.env.STORAGE_AUTH_KEY || '__vid';
 
 export const state = () => ({
   auth: null,
@@ -49,7 +49,9 @@ export const actions = {
     async appInit(context) {
       try{
         let auth = storage.get(authKey)
-        context.commit("SET_AUTH", auth);
+        if( auth ) {
+          context.commit("SET_AUTH", auth);
+        }
         context.dispatch("product/init");
         context.dispatch("cart/init");
         context.dispatch("favourite/init");
@@ -58,40 +60,45 @@ export const actions = {
       }
     },
     async login(context, params) {
-        let response = await strapi.login( params.identifier, params.password)
-        console.log('>>>>>>>>>', response)
-        context.commit("SET_AUTH", response.data)
+        let response = await repository.login( params)
+        context.commit("SET_AUTH", response)
         return Promise.resolve(response);
     },
 
     async register(context, params) {
-        let response = await strapi.register(params.username, params.email, params.password)
-        context.commit("SET_USER", response.data)
+        let response = await repository.register(params)
+        context.commit("SET_USER", response)
         return Promise.resolve(response);
     },
 
     async forgotPassword(context, params) {
-        let response = await strapi.forgotPassword(params.email, params.url)
+        let response = await repository.forgotPassword(params)
+        return Promise.resolve(response);
     },
     
-    async forgotPassword(context, params) {
-        let response = await strapi.resetPassword(params.code, params.password, params.passwordConfirmation)
+    async resetPassword(context, params) {
+        let response = await repository.resetPassword(params)
+        return Promise.resolve(response);
     },
     
     async getProviderAuthenticationUrl(context, params) {
-        let response = await strapi.getProviderAuthenticationUrl(params.provider)
+        let response = await repository.getProviderAuthenticationUrl(params)
+        return Promise.resolve(response);
     },
 
     async authenticateProvider(context, params) {
-        let response = await strapi.authenticateProvider(provider, params)
+        let response = await repository.authenticateProvider(params)
+        return Promise.resolve(response);
     },
 
     async setToken(context, params) {
-        let response = await strapi.setToken(params.token, params.comesFromStorage)
+        let response = await repository.setToken(params)
+        return Promise.resolve(response);
     },
 
-    async setToken(context, params) {
-        let response = await strapi.clearToken(params.token)
+    async clearToken(context, params) {
+        let response = await repository.clearToken(params)
+        return Promise.resolve(response);
     },
 
     async logout(context) {

@@ -4,12 +4,12 @@ class StorageInstance
 {
     constructor() {
         this.store = localForage.createInstance({
-            driver      : localForage.LOCALSTORAGE, // Force WebSQL; same as using setDriver()
-            name        : '__viauco',
-            version     : 1.0,
-            size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-            storeName   : '__v_store_key', // Should be alphanumeric, with underscores.
-            description : 'viauco storage'
+            driver      : localForage[process.env.STORAGE_DRIVER || LOCALSTORAGE], // Force WebSQL; same as using setDriver()
+            name        : process.env.STORAGE_NAME || '__v',
+            version     : process.env.STORAGE_VERSION || 1.0,
+            size        : process.env.STORAGE_SIZE || 4980736, // Size of database, in bytes. WebSQL-only for now.
+            storeName   : process.env.STORAGE_STORE_NAME || '__vs', // Should be alphanumeric, with underscores.
+            description : process.env.STORAGE_DICRIPTION || 'viauco storage'
         });
         
     }

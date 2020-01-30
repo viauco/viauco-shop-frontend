@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import storage from '@/services/storage';
 
-export const cartKey = '__card';
+export const cartKey = process.env.STORAGE_CART_KEY || '__cart';
 
 export const state = () => ({
     products:[]

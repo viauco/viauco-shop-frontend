@@ -34,6 +34,7 @@ module.exports = {
       { property: 'twitter:title',  content: 'Content Title' },
       { property: 'twitter:description',  content: 'Content description less than 200 characters' },
       { property: 'twitter:image',  content: 'https://example.com/image.jpg' }
+      
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -69,7 +70,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/reset.css',
+    /*'~/assets/css/reset.css',*/
     {
       src: 'bulma/bulma.sass',
       lang: 'sass'
@@ -82,6 +83,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/nuxt-client-init.client.js',
+    /*{ src: '~/plugins/polyfills', mode: 'client' },*/
     '@/plugins/mixin',
     '@/plugins/vuelidate',
   ],
@@ -91,6 +93,10 @@ module.exports = {
   */
   buildModules: [
     '@nuxtjs/dotenv',
+    '@nuxtjs/imagemin',
+    ['@nuxtjs/google-analytics', {
+      id: process.env.GOOGLE_ANALYTICS_ID || ''
+    }]
   ],
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
@@ -118,13 +124,50 @@ module.exports = {
     baseURL: process.env.API_URL || 'http://localhost'
   },
   polyfill: {
-    features: [{
+    features: [
+      /* 
+        Feature without detect:
+
+        Note: 
+          This is not recommended for most polyfills
+          because the polyfill will always be loaded, parsed and executed.
+      */
+      {
         require: 'filereader-polyfill'
-    }, {
+      }, 
+      {
         require: 'notification-polyfill'
-    }, {
+      }, 
+      {
         require: 'url-polyfill'
-    }]
+      },
+      /* 
+        Feature with detect:
+
+        Detection is better because the polyfill will not be 
+        loaded, parsed and executed if it's not necessary.
+      */
+      {
+        require: 'intersection-observer',
+        detect: () => 'IntersectionObserver' in window,
+      },
+
+      /*
+        Feature with detect & install:
+
+        Some polyfills require a installation step
+        Hence you could supply a install function which accepts the require result
+      */
+      {
+        require: 'smoothscroll-polyfill',
+
+        // Detection found in source: https://github.com/iamdustan/smoothscroll/blob/master/src/smoothscroll.js
+        detect: () => 'scrollBehavior' in document.documentElement.style && window.__forceSmoothScrollPolyfill__ !== true,
+
+        // Optional install function called client side after the package is required:
+        install: (smoothscroll) => smoothscroll.polyfill()
+      }
+    ]
   },
   build:{
     

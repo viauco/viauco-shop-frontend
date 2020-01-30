@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Promise from 'bluebird';
 import storage from '@/services/storage';
 
-export const farvouriteKey = '__farvourite';
+export const farvouriteKey = process.env.STORAGE_FAVOURITE_KEY || '__farvourites';
 
 export const state = () => ({
     products:[]

@@ -86,7 +86,7 @@ export default {
                 password: this.password
             })
             .then( (response) => {
-                //bus.$emit('onDialogIndex',{ index: 0})
+                bus.$emit('onDialogIndex',{ index: 0})
             } )
             .catch( (error) => {
                 
