@@ -128,18 +128,20 @@ export const mutations = {
 
 export const actions = {
     async init(context) {
-        /*try{
-            let products = await storage.get(productKey)
-            if( !products) {
-                products = raw
-            }
-            context.commit('SET_PRODUCTS', products)
-        }catch(e){}*/
+      try{
+        let products = await storage.get(productKey)
+        if( !products) {
+            products = raw
+        }
+        context.commit('SET_PRODUCTS', products)
+      }catch(e){}
+      /*  
       context.dispatch('getProducts',{ 
         _sort: 'created_at:desc',
         _start: 0,
         _limit: 12
-      })
+      });
+      */
     },
     async getProducts(context, params) {
       let response = await repository.getEntries({

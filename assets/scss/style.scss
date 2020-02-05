@@ -2,17 +2,22 @@
     outline: none;
 }
 
+$mainColor: #646464;
+$mainBackground: #fff;
+$mainFontFamily: 'Helvetica Neue', 'Helvetica', Arial, sans-serif’;
+$mainFontWeight: 300;
+$mainLineHeight: 1.8;
+
 html, body{
     min-height: 100vh;
     min-width: 100vw;
-    color:#646464;
-    background-color: #fff;
-    direction: rtl;
-    font-weight: 300;
-    font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif’;
+    color: $mainColor;
+    background-color: $mainBackground;
+    font-weight: $mainFontWeight;
+    font-family: $mainFontFamily;
     position: relative;
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: $mainLineHeight;
     cursor: default;
     transition: padding .25s;
 }

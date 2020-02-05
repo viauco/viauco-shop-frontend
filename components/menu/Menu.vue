@@ -1,21 +1,19 @@
 <template>
 	<div>
-		<div class="navbar-item">
+		<div class="navbar-item-child" v-if="!isLoggedIn">
 			<div class="field is-grouped">
 				<p class="control">
-					<a v-if="!isLoggedIn" class="button" @click="onGloalEmit('OnDialogIndex', {index: 2} )">
+					<a  class="" @click="onGloalEmit('OnDialogIndex', {index: 2} )">
 						<span class="icon">
 							<i class="fa fa-user-plus"></i>
 						</span>
-						<span>{{ $t('SignUpTitle') }}</span>
 					</a>
 				</p>
 				<p class="control">
-					<a v-if="!isLoggedIn" class="button" @click="onGloalEmit('OnDialogIndex', {index: 1} )">
+					<a class="" @click="onGloalEmit('OnDialogIndex', {index: 1} )">
 						<span class="icon">
 							<i class="fa fa-user"></i>
 						</span>
-						<span>{{ $t('Login') }}</span>
 					</a>
 				</p>
 			</div>
@@ -24,11 +22,15 @@
 			<a class="navbar-link">{{ $t('Welcome', { name: userName}) }}</a>
 			<div class="navbar-dropdown is-boxed">
 				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
-					{{ $t('WishList') }}
+					<span class="icon">
+						<i class="fa fa-heart"></i>
+					</span>
 				</nuxt-link>
 				<hr class="navbar-divider">
 				<a class="navbar-item" @click="logout">
-					{{ $t('btnLogout') }}
+					<span class="icon">
+						<i class="fas fa-sign-out-alt"></i>
+					</span>
 				</a>
 			</div>
 		</div>

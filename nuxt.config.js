@@ -75,7 +75,14 @@ module.exports = {
       src: 'bulma/bulma.sass',
       lang: 'sass'
     },
-    '~/assets/css/style.css'
+    {
+      src: '~/assets/scss/spacing.scss',
+      lang: 'scss'
+    },
+    {
+      src: '~/assets/scss/style.scss',
+      lang: 'scss'
+    }
   ],
 
   /*

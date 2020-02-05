@@ -2,7 +2,7 @@
 <div class="d--page">
     <VmModal />
     <VmHeader />
-    <main>
+    <main class="container-main">
         <nuxt/>
     </main>
     <VmFooter />
