@@ -27,6 +27,7 @@
   "dependencies": {
     "@nuxtjs/font-awesome": "latest",
     "@nuxtjs/pwa": "latest",
+    "@nuxtjs/svg": "^0.1.6",
     "babel-polyfill": "latest",
     "babel-runtime": "latest",
     "bluebird": "latest",
@@ -39,6 +40,7 @@
     "nuxt-i18n": "latest",
     "nuxt-polyfill": "latest",
     "nuxt-socket-io": "latest",
+    "nuxt-svg-loader": "^1.2.0",
     "smoothscroll-polyfill": "latest",
     "strapi-sdk-javascript": "latest",
     "url-polyfill": "latest",

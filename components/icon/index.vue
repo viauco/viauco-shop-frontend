@@ -1,5 +1,5 @@
 <template>
-    <span v-if="_isValid" class="app---icon" v-html="_svg" :style="{'color': _color, 'width': _size, 'height': _size}" ></span>
+    <span v-if="_isValid" class="app---icon" v-html="_svg" :style="{'color': _color, 'width': _width, 'height': _height}"></span>
 </template>
 <script>
 //see https://leungwensen.github.io/svg-icon
@@ -10,7 +10,7 @@ export default {
             type: String,
             require: true
         },
-        id:{
+        file:{
             type: String,
             require: true
         },
@@ -31,8 +31,8 @@ export default {
         _path() {
             return this.path
         },
-        _id() {
-            return this.id
+        _file() {
+            return this.file
         },
         _color() {
             return this.color
@@ -43,16 +43,15 @@ export default {
         _height() {
             return this.height
         },
-        _isValid() {
-            return this._path && this._id
-        },
-        _name() {
-            return this._path + '/' + this._id + '.svg'
+        _url() {
+            return ['~/assets/icons/', this._path, '/', this._file, '.svg'].join('')
         },
         _svg() {
-
-            return this._isValid ? require(`~/assets/icon/${this._name}`) : null;
-        }
+            return require(`${this._url}`);
+        },
+         _isValid() {
+            return this._path && this._file
+        },
     }
 }
 </script>

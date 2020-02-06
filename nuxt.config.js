@@ -110,6 +110,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/font-awesome',
     'nuxt-polyfill',
+    '@nuxtjs/svg',
     ['nuxt-i18n', {
       locales: ['en', 'vi'],
       defaultLocale: 'en',
@@ -175,8 +176,5 @@ module.exports = {
         install: (smoothscroll) => smoothscroll.polyfill()
       }
     ]
-  },
-  build:{
-    
   }
 }
