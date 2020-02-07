@@ -1,57 +1,46 @@
 <template>
-    <span v-if="_isValid" class="app---icon" v-html="_svg" :style="{'color': _color, 'width': _width, 'height': _height}"></span>
+<svg class="app---icon">
+    <use :xlink:href="_svgLink" />
+</svg>
 </template>
 <script>
 //see https://leungwensen.github.io/svg-icon
+import * as svg from './sprite'
 export default {
     name: 'AppIcon',
     props:{
-        path:{
-            type: String,
-            require: true
-        },
         file:{
             type: String,
             require: true
         },
-        color:{
+        id:{
             type: String,
-            default: '#e2e2e2',
-        },
-        width:{
-            type: String,
-            default: '1rem',
-        },
-        height:{
-            type: String,
-            default: '1rem',
+            require: true
         }
     },
     computed:{
-        _path() {
-            return this.path
+        _svg() {
+            return svg;
         },
         _file() {
             return this.file
         },
-        _color() {
-            return this.color
+        _id() {
+            return this.id
         },
-        _width() {
-            return this.width
+        _svgId() {
+            return ['#', this._id].join('')
         },
-        _height() {
-            return this.height
-        },
-        _url() {
-            return ['~/assets/icons/', this._path, '/', this._file, '.svg'].join('')
-        },
-        _svg() {
-            return require(`${this._url}`);
-        },
-         _isValid() {
-            return this._path && this._file
-        },
+        _svgLink() {
+            return [this._svg[this._file], this._svgId].join('');
+        }
     }
 }
 </script>
+<style scoped>
+.app---icon{
+    height: 1rem;
+    width: 1rem;
+    fill:red;
+}
+</style>

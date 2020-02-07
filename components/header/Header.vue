@@ -37,8 +37,8 @@
         <span class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
-        <AppIcon path="ant" file="user" />
         <span :class="[cartLength > 0 ? 'tag is-info' : '']">{{ cartLength }}</span>
+         <AppIcon file="ant" id="si-ant-aliwangwang" />
       </div>
       <VmMenu class="navbar-item is-hidden-mobile"></VmMenu>
     </div>

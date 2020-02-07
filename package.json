@@ -43,12 +43,14 @@
     "nuxt-svg-loader": "^1.2.0",
     "smoothscroll-polyfill": "latest",
     "strapi-sdk-javascript": "latest",
+    "svg-inline-loader": "^0.8.0",
     "url-polyfill": "latest",
     "vue": "latest",
     "vue-router": "latest",
     "vue-star-rating": "latest",
     "vuelidate": "latest",
-    "vuex": "latest"
+    "vuex": "latest",
+    "xmldom": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
