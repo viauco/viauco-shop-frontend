@@ -1,9 +1,7 @@
 <template>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <nuxt-link :to="localePath({ name: 'index' })" class="navbar-item">
-      <h1 class="title is-3 is-flex-mobile"></h1>
-    </nuxt-link>
+    <AppLogo class="navbar-item"/>
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMainMenu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -21,24 +19,21 @@
     <div class="navbar-end">
       <div class="navbar-item social">
         <a href="#" target="_blank" class="icon" :title="$t('FacebookTooltip')">
-          <i class="fa fa-facebook"></i>
+          <app-icon file="zocial" id="si-zocial-facebook" />
         </a>
         <a href="#" target="_blank" class="icon" :title="$t('TwitterTooltip')">
-          <i class="fa fa-twitter"></i>
+          <app-icon file="zocial" id="si-zocial-twitter" />
         </a>
         <a href="#" target="_blank" class="icon" :title="$t('InstagramTooltip')">
-          <i class="fa fa-instagram"></i>
+          <app-icon file="zocial" id="si-zocial-instagram" />
         </a>
         <a href="#" target="_blank" class="icon" :title="$t('LinkedinTooltip')">
-          <i class="fa fa-linkedin"></i>
+          <app-icon file="zocial" id="si-zocial-linkedin" />
         </a>
       </div>
       <div class="navbar-item shopping-cart" @click="onGloalEmit('OnDialogIndex', {index: 3})">
-        <span class="icon">
-          <i class="fa fa-shopping-cart"></i>
-        </span>
-        <span :class="[cartLength > 0 ? 'tag is-info' : '']">{{ cartLength }}</span>
-         <AppIcon file="ant" id="si-ant-aliwangwang" />
+        <app-icon id="si-material-add-shopping-cart" file="material" />
+        <span v-if="cartLength > 0" class="app--cart-number">{{ cartLength }}</span>
       </div>
       <VmMenu class="navbar-item is-hidden-mobile"></VmMenu>
     </div>
@@ -58,9 +53,9 @@
     },
 
     components: {
-      VmSearch:() => import('@/components/menu/Menu'),
-      VmMenu: () => import('@/components/search/Search'),
-      AppIcon: () => import('@/components/icon')
+      VmMenu:() => import('@/components/menu/Menu'),
+      VmSearch: () => import('@/components/search/Search'),
+      AppLogo: () => import('@/components/icon/logo')
     },
 
     computed: {
@@ -79,17 +74,17 @@
 </script>
 
 <style lang="scss" scoped>
-  .title {
-    background: url('../../static/logo.png') no-repeat;
-    background-position: 50% 50%;
-    background-size: 60px;
-    width: 130px;
-    height: 35px;
-  }
-  .shopping-cart {
-    cursor: pointer;
-  }
-  a {
-    color: grey;
-  }
+.app--cart-number{
+  padding: 0.15rem;
+  background: #e2e2e2;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+.shopping-cart {
+  cursor: pointer;
+}
+a {
+  color: grey;
+}
 </style>

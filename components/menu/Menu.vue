@@ -2,29 +2,15 @@
 	<div>
 		<div class="navbar-item-child" v-if="!isLoggedIn">
 			<div class="field is-grouped">
-				<p class="control">
-					<a  class="" @click="onGloalEmit('OnDialogIndex', {index: 2} )">
-						<span class="icon">
-							<i class="fa fa-user-plus"></i>
-						</span>
-					</a>
-				</p>
-				<p class="control">
-					<a class="" @click="onGloalEmit('OnDialogIndex', {index: 1} )">
-						<span class="icon">
-							<i class="fa fa-user"></i>
-						</span>
-					</a>
-				</p>
+				<app-icon class="app---cursor" @click.native="onGloalEmit('OnDialogIndex', {index: 2} )" id="si-icomoon-user-plus" file="icomoon" />
+				<app-icon class="app---cursor" @click.native="onGloalEmit('OnDialogIndex', {index: 1} )" id="si-icomoon-user" file="icomoon" />
 			</div>
 		</div>
 		<div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">{{ $t('Welcome', { name: userName}) }}</a>
 			<div class="navbar-dropdown is-boxed">
-				<nuxt-link class="navbar-item" :to="{ name: 'user-wishlist' }">
-					<span class="icon">
-						<i class="fa fa-heart"></i>
-					</span>
+				<nuxt-link class="navbar-item app---cursor" :to="{ name: 'user-wishlist' }">
+					<AppIcon file="ant" id="si-ant-heart" />
 				</nuxt-link>
 				<hr class="navbar-divider">
 				<a class="navbar-item" @click="logout">
@@ -40,7 +26,6 @@
 <script>
 export default {
 	name: 'VmMenu',
-	
 	methods: {
 		logout () {
 			this.$store.dispatch('logout')

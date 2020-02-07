@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import eventBus from '@/services/bus';
+import AppIcon from '@/components/icon/index';
+Vue.component('app-icon', AppIcon);
 
 export default function () {
     Vue.mixin({

@@ -7,9 +7,9 @@ $mainBackground: #fff;
 $mainFontFamily: 'Helvetica Neue', 'Helvetica', Arial, sans-serif’;
 $mainFontWeight: 300;
 $mainLineHeight: 1.8;
-
-svg-icon{display:inline-block}
-svg-icon svg{fill:#999;height:1.2em;width:1.2em;vertical-align:middle}
+$iconSize: 1rem;
+$logoSize: 3rem;
+$iconColor: #f2de41;
 
 html, body{
     min-height: 100vh;
@@ -23,6 +23,18 @@ html, body{
     line-height: $mainLineHeight;
     cursor: default;
     transition: padding .25s;
+}
+.app---icon{
+    height: $iconSize;
+    width: $iconSize;
+    fill:$iconColor;
+}
+.app---logo{
+    height: $logoSize;
+    width: $logoSize;
+}
+.app---cursor{
+    cursor: pointer;
 }
 .flex-end{
     justify-content: flex-end;

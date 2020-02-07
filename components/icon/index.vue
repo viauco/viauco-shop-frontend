@@ -1,11 +1,11 @@
 <template>
-<svg class="app---icon">
-    <use :xlink:href="_svgLink" />
+<svg class="app---icon" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+    <use :href="_svgLink" />
 </svg>
 </template>
 <script>
 //see https://leungwensen.github.io/svg-icon
-import * as svg from './sprite'
+import { svg  } from './sprite'
 export default {
     name: 'AppIcon',
     props:{
@@ -37,10 +37,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.app---icon{
-    height: 1rem;
-    width: 1rem;
-    fill:red;
-}
-</style>
