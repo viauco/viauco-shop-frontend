@@ -9,7 +9,8 @@ $mainFontWeight: 300;
 $mainLineHeight: 1.8;
 $iconSize: 1rem;
 $logoSize: 3rem;
-$iconColor: #f2de41;
+$iconColor: rgba(255,165,0,.92);
+$footerColor: #e1e1e1;
 
 html, body{
     min-height: 100vh;
@@ -36,6 +37,7 @@ html, body{
 .app---cursor{
     cursor: pointer;
 }
+
 .flex-end{
     justify-content: flex-end;
 }
@@ -67,4 +69,127 @@ html, body{
 .scroller::-webkit-scrollbar-thumb {
     height: 30px;
     
+}
+.site-footer {
+    background-color: $footerColor;
+}
+.copyright-socials {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    background-color: #424242;
+    color: #f5f5f5;
+    text-align: center;
+}
+.socials {
+    list-style: none;
+    padding: 0;
+    direction: ltr;
+}
+.socials>li {
+    display: inline-block;
+    vertical-align: top;
+    margin: .25em;
+}
+.socials>li a {
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-color: #646464;
+    border-radius: 50%;
+    color: #d2d2d2;
+    text-align: center;
+}
+.icon-aparat:before {
+    content: "\e98b";
+}
+.icon-linkedin:before {
+    content: "\e98f";
+}
+.icon-instagram:before {
+    content: "\e98e";
+}
+.site-footer__title {
+    margin: 0 -15px 1em;
+    padding: 5px 15px;
+    font-size: 1.25em;
+    display: block;
+    font-weight: 700;
+    color: #424242;
+}
+.site-footer__list {
+    padding-right: 1em;
+    margin: 0 0 1.5em;
+    list-style: disc;
+}
+.site-footer__item {
+    color: orange;
+    font-size: .9em;
+    font-weight: 300;
+    line-height: 2;
+}
+.site-footer__item>a, .site-footer__item span {
+    color: #646464;
+    cursor: pointer;
+}
+.site-footer__logo {
+    width: 210px;
+    max-width: 200px;
+    margin-bottom: 0.6em;
+}
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0;
+}
+.contact-info__address, .contact-info__phone {
+    font-size: .875em;
+    color: #424242;
+}
+.contact-info__address, .contact-info__phone {
+    font-size: .875em;
+    color: #424242;
+}
+.signs-container .signs {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.signs-container .signs>li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
+    flex-shrink: 0;
+    flex-basis: 87px;
+    min-width: 87px;
+    min-height: 87px;
+    float: right;
+    margin: 3px;
+}
+.signs-container .signs>li>img {
+    width: 90%;
+    height: 90%;
+}
+.clickable {
+    cursor: pointer;
+}
+.site-footer .app-download {
+    text-align: center;
+    margin-bottom: 2.5em;
+}
+.site-footer .app-download__links {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+.site-footer .app-download__link img {
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
+    border-radius: 5px;
 }

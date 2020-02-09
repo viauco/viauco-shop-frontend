@@ -1,23 +1,17 @@
 <template>
-  <div class="hero is-medium is-bold">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Free ecommerce template for Vue.js projects
-        </h1>
-        <h2 class="subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        </h2>
-      </div>
-    </div>
-  </div>
+<div class="hero is-medium is-bold">
+  <img src="@/assets/images/flight.jpg" alt="">
+</div>
 </template>
-
+<script>
+export default {
+  name:'Hero',
+  
+}
+</script>
 <style lang="scss" scoped>
-    .hero {
-      background: #d2d2d2;
-    }
-    h1, h2 {
-      color: #fff;
-    }
+.app---home-search{
+  margin-top: -14rem;
+  margin-bottom: 2rem;
+}
 </style>

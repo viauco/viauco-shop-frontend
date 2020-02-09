@@ -2,21 +2,19 @@
 	<div>
 		<div class="navbar-item-child" v-if="!isLoggedIn">
 			<div class="field is-grouped">
-				<app-icon class="app---cursor" @click.native="onGloalEmit('OnDialogIndex', {index: 2} )" id="si-icomoon-user-plus" file="icomoon" />
-				<app-icon class="app---cursor" @click.native="onGloalEmit('OnDialogIndex', {index: 1} )" id="si-icomoon-user" file="icomoon" />
+				<app-icon class="app---cursor" @click.native="onGloalEmit('OnDialogIndex', {index: 2} )" id="si-entypo-lock-open" file="entypo" />
+				<app-icon class="app---cursor ml-1" @click.native="onGloalEmit('OnDialogIndex', {index: 1} )" id="si-entypo-login" file="entypo" />
 			</div>
 		</div>
 		<div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">{{ $t('Welcome', { name: userName}) }}</a>
 			<div class="navbar-dropdown is-boxed">
 				<nuxt-link class="navbar-item app---cursor" :to="{ name: 'user-wishlist' }">
-					<AppIcon file="ant" id="si-ant-heart" />
+					<app-icon file="ant" id="si-ant-heart" />
 				</nuxt-link>
 				<hr class="navbar-divider">
 				<a class="navbar-item" @click="logout">
-					<span class="icon">
-						<i class="fas fa-sign-out-alt"></i>
-					</span>
+					<app-icon id="si-entypo-logout" file="entypo"  />
 				</a>
 			</div>
 		</div>

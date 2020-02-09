@@ -1,4 +1,5 @@
 <template>
+<div>
 	<p class="control has-icons-left">
 		<input
 			class="input is-rounded"
@@ -8,9 +9,10 @@
 			@keyup="search(value)"
 		>
 		<span class="icon is-small is-left">
-			<i class="fa fa-search"></i>
+			<app-icon file="ant" id="si-ant-search" />
 		</span>
 	</p>
+</div>
 </template>
 
 <script>
@@ -24,23 +26,13 @@ export default {
 
 	computed: {
 		placeholder () {
-			if (this.$route.path === '/wishlist') {
-				return 'Search in wishlist...';
-			} else {
-				return 'Search...';
-			}
+			return 'Search...';
 		}
 	},
 
 	methods: {
 		search (value) {
-			if (value.length > 0) {
-				this.$store.commit('setHasUserSearched', true);
-				this.$store.commit('setProductTitleSearched', value);
-			} else {
-				this.$store.commit('setHasUserSearched', false);
-				this.$store.commit('setProductTitleSearched', '');
-			}
+			
 		}
 	}
 }

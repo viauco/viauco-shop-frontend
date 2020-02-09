@@ -1,7 +1,9 @@
 <template>
 <div class="d--page">
     <VmModal />
-    <VmHeader />
+    <header class="site-header">
+      <VmHeader class="main-navigation"/>
+    </header>
     <main class="container-main">
         <nuxt/>
     </main>
@@ -22,6 +24,26 @@ export default {
 </script>
 
 <style>
+.main-navigation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #fff;
+    position: relative;
+    border-bottom: 1px solid #e1e1e1;
+    z-index: 1000;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.28);
+}
+.site-header {
+    z-index: 501;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    will-change: transform;
+    transition: transform .3s linear;
+}
   .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;
