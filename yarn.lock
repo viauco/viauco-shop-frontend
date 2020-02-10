@@ -784,9 +784,9 @@
   integrity sha512-1dVNHT76Uu5N3eJNTYcvxee+jzX4Z9lfciqRRHCU27ihbUcYi+iSc2iml5Ke1LXe1SyJCLA0+14Jh4tXJgOppA==
 
 "@hapi/hoek@8.x.x", "@hapi/hoek@^8.3.0":
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.5.0.tgz#2f9ce301c8898e1c3248b0a8564696b24d1a9a5a"
-  integrity sha512-7XYT10CZfPsH7j9F1Jmg1+d0ezOux2oM2GfArAzLwWe4mE2Dr3hVjsAL6+TFY49RRJlCdJDMw3nJsLFroTc8Kw==
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.5.1.tgz#fde96064ca446dec8c55a8c2f130957b070c6e06"
+  integrity sha512-yN7kbciD87WzLGc5539Tn0sApjyiGHAJgKvG9W8C7O+6c7qmoQMfVs0W4bX17eqz6C78QJqqFrtgdK5EWf6Qow==
 
 "@hapi/joi@^15.0.1":
   version "15.1.1"
@@ -3814,9 +3814,9 @@ ejs@^2.6.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.341:
-  version "1.3.345"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.345.tgz#2569d0d54a64ef0f32a4b7e8c80afa5fe57c5d98"
-  integrity sha512-f8nx53+Z9Y+SPWGg3YdHrbYYfIJAtbUjpFfW4X1RwTZ94iUG7geg9tV8HqzAXX7XTNgyWgAFvce4yce8ZKxKmg==
+  version "1.3.346"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.346.tgz#b08becbfbd64a42061195afd3a4923d0416c5d46"
+  integrity sha512-Yy4jF5hJd57BWmGPt0KjaXc25AmWZeQK75kdr4zIzksWVtiT6DwaNtvTb9dt+LkQKwUpvBfCyyPsXXtbY/5GYw==
 
 elliptic@^6.0.0:
   version "6.5.2"
@@ -7083,9 +7083,9 @@ nuxt-polyfill@latest:
   integrity sha512-cYJoCxaHcTJpIsqs2xRuHf/KapODH1/HHGGGVJGjAMvog55jXxubsrtwBmZRV+QK1MZzpGQZWwSBz/JnTDvXhQ==
 
 nuxt-socket-io@latest:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/nuxt-socket-io/-/nuxt-socket-io-1.0.17.tgz#b5fdcee5cd1a986bc6cbb11996f7f59ca5de1671"
-  integrity sha512-MRBxNhW5sDonzEQgs6dZ+I7HDDNQL33Pxu7hC5ChrCg3Fja9oHB+lzCxD+CkCv0V/9eahh4B2p8m0jtbWN3WFg==
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/nuxt-socket-io/-/nuxt-socket-io-1.0.18.tgz#5b9b98fe8f5fcf39b4286cf3831bd64f25e27164"
+  integrity sha512-LHafPm3BufLN48Ox7U5lMkU0CVgxGvw2Y3foVmP2tOqTZc80K4rU1DsrSD4OMdSodCijd+EjWejWYdej1AuuwQ==
   dependencies:
     socket.io-client "^2.3.0"
 
