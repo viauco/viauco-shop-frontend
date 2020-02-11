@@ -31,6 +31,7 @@
     "babel-runtime": "latest",
     "bluebird": "latest",
     "bulma": "latest",
+    "element-ui": "^2.13.0",
     "filereader-polyfill": "latest",
     "intersection-observer": "latest",
     "localforage": "latest",

@@ -25,27 +25,20 @@ export const actions = {
             context.commit('SET_FAVOURITE', products)
         }catch(e){}
     },
-    async addToFavourite(context, {product, quanlity}) {
+    async addToFavourite(context, productId) {
         let products = _.cloneDeep(context.state.products);
-        let index = _.findIndex(products,(p) => {
-            return p.product.id == product.id
-        });
-        if( index >= 0 ) {
-            products[index].quanlity += quanlity
-        }
-        else{
-            products.push({product: product, quanlity: quanlity})
+        let index = products.indexOf( productId );
+        if( index < 0 ) {
+            products.push(productId)
         }
         context.commit("SET_FAVOURITE", products)
         return Promise.resolve(true);
     },
-    async removeFromFavourite(context, product) {
+    async removeFromFavourite(context, productId) {
         let products = _.cloneDeep(context.state.products);
-        let index = _.findIndex(products,(p) => {
-            return p.product.id == product.id
-        });
+        let index = products.indexOf( productId );
         if( index >= 0 ) {
-            products.splice(index, 1)
+            products.splice(index, 1);
         }
         context.commit("SET_FAVOURITE", products)
         return Promise.resolve(true);

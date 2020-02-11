@@ -79,10 +79,11 @@ module.exports = {
       src: '~/assets/scss/spacing.scss',
       lang: 'scss'
     },
+    '@/node_modules/element-ui/lib/theme-chalk/index.css',
     {
       src: '~/assets/scss/style.scss',
       lang: 'scss'
-    }
+    },
   ],
 
   /*
@@ -92,7 +93,7 @@ module.exports = {
     '@/plugins/nuxt-client-init.client.js',
     /*{ src: '~/plugins/polyfills', mode: 'client' },*/
     '@/plugins/mixin',
-    '@/plugins/vuelidate',
+    '@/plugins/packages',
   ],
 
   /*
@@ -175,5 +176,12 @@ module.exports = {
         install: (smoothscroll) => smoothscroll.polyfill()
       }
     ]
+  },
+  watchers: {
+    webpack: {
+      aggregateTimeout: 300,
+      poll: 1000,
+      ignored: ['/node_modules/**', '/assets/**', '/static/**']
+    }
   }
 }

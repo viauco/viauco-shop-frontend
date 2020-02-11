@@ -1,8 +1,8 @@
 <template>
     <star-rating v-bind:increment="0.5"
         v-bind:max-rating="5"
-        inactive-color="#000"
-        active-color="#637cc6"
+        inactive-color="#d2d2d2"
+        active-color="rgba(255, 165, 0, 0.92)"
         :rating="rating"
         v-bind:star-size="size"
         :read-only="disable">

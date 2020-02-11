@@ -21,7 +21,7 @@ export const mutations = {
 export const actions = {
     async init(context) {
       try{
-        let products = await storage.get(productKey)
+        let products = null;//await storage.get(productKey)
         if( !products) {
             products = raw
         }

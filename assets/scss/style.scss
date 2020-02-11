@@ -193,3 +193,13 @@ html, body{
     box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
     border-radius: 5px;
 }
+
+.modal-card-head, .modal-card-foot{
+    padding: 0.5rem;
+}
+.app---border-radius-circle{
+    border-radius: 50%;
+}
+.app---border-radius-circle-important{
+    border-radius: 50% !important;
+}

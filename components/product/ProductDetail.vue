@@ -1,8 +1,8 @@
 <template>
   <div v-if="product">
     <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://loremflickr.com/1280/960" alt="Placeholder image">
+      <figure class="image">
+        <el-image :src="cover" :alt="title" />
       </figure>
     </div>
     <div class="card-content">
@@ -11,14 +11,9 @@
           <p class="title is-4">{{ title }}</p>
         </div>
         <div>
-          <button class="button is-small" :title="$t('RemoveFromFavouriteLabel')" v-show="isFavourite >= 0" @click="removeFromFavourite(product)">
+          <button class="button is-small">
             <span class="icon is-small">
-              <i class="fa fa-heart"></i>
-            </span>
-          </button>
-          <button class="button is-small" :title="$t('AddToFavouriteLabel')" v-show="isFavourite < 0" @click="saveToFavorite(product)">
-            <span class="icon is-small">
-              <i class="fa fa-heart-o"></i>
+              <app-love :id="id"/>
             </span>
           </button>
         </div>
@@ -30,7 +25,7 @@
           <p>{{ $tc('NumberReviews',{ count: reviews}) }}</p>
         </div>
         <p class="is-pulled-right">
-          <span class="title is-4"><strong>&euro; {{ price }}</strong></span>
+          <span class="title is-4"><strong>{{priceUnitSign}}{{ price }}</strong></span>
         </p>
       </div>
       <div class="card-footer btn-actions">
@@ -55,7 +50,8 @@ import _ from 'lodash';
 export default {
   name: 'ProductDetail',
   components: {
-    AppRating: () => import('@/components/rating/index')
+    AppRating: () => import('@/components/rating/index'),
+    AppLove: () => import('@/components/icon/love/heart')
   },
   data () {
     return {
@@ -80,24 +76,20 @@ export default {
     product() {
       return this.products.find(product => product.id == this.id);
     },
+    cover() {
+      return this.product && this.product.cover ? this.product.cover : null
+    },
+    images() {
+      return this.product && this.product.images ? this.product.images : []
+    },
     quantityArray() {
       return Array(20).fill().map((x,i)=> i + 1)
     },
     cart() {
       return this.$store.state.cart.products
     },
-    arrFavourite() {
-      return this.$store.state.favourite.products
-    },
-    
     isAddedToCart() {
       let index = _.findIndex(this.cart, (p) => {
-        return p.product.id == this.id
-      });
-      return index;
-    },
-    isFavourite() {
-      let index = _.findIndex(this.arrFavourite, (p) => {
         return p.product.id == this.id
       });
       return index;
@@ -116,6 +108,9 @@ export default {
     },
     price() {
       return this.product && this.product.price ? this.product.price : 0
+    },
+    priceUnitSign() {
+      return this.product && this.product.priceUnitSign ? this.product.priceUnitSign : ''
     }
   },
 
@@ -125,17 +120,6 @@ export default {
     },
     removeFromCart (product) {
       this.$store.dispatch('cart/removeFromCart', product);
-    },
-    saveToFavorite (product) {
-      if( ! this.isLoggedIn ) {
-        this.onGloalEmit('OnDialogIndex', { index: 1})
-        return;
-      }
-
-      this.$store.dispatch('favourite/addToFavourite', product);
-    },
-    removeFromFavourite (product) {
-      this.$store.dispatch('favourite/removeFromFavourite', product);
     },
     onSelectQuantity (product) {
       if( this.isAddedToCart ) {

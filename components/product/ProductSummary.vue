@@ -1,8 +1,8 @@
 <template>
   <div v-if="product">
     <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://picsum.photos/200" alt="Placeholder image">
+      <figure class="image">
+        <el-image :src="cover" :alt="title" />
       </figure>
     </div>
     <div class="card-content">
@@ -11,57 +11,29 @@
           <p class="title is-4">{{ title }}</p>
         </div>
         <div>
-          <button class="button is-small" :title="$t('RemoveFromFavouriteLabel')" v-show="isFavourite >= 0" @click="removeFromFavourite(product)">
+          <button class="button is-small app---border-radius-circle-important">
             <span class="icon is-small">
-              <i class="fa fa-heart"></i>
+              <app-love :id="id"/>
             </span>
           </button>
-          <button class="button is-small" :title="$t('AddToFavouriteLabel')" v-show="isFavourite < 0" @click="saveToFavorite(product)">
+          <button class="button is-small app---border-radius-circle-important">
             <span class="icon is-small">
-              <i class="fa fa-heart-o"></i>
+              <app-cart :item="product" />
             </span>
           </button>
         </div>
       </div>
       <div class="content is-clearfix">
-        <p>{{ description }}</p>
+        <p>{{ sapo }}</p>
         <div class="is-pulled-left">
           <app-rating :rating="ratings" v-bind:disable="true" />
-          <p>{{ $tc('NumberReviews',{ count: reviews}) }}</p>
         </div>
         <p class="is-pulled-right">
-          <span class="title is-4"><strong>&euro; {{ price }}</strong></span>
+          <span class="title is-4"><strong>{{ priceUnitSign }}{{ price }}</strong></span>
         </p>
       </div>
-      <div class="card-footer btn-actions">
-        <div class="card-footer-item field is-grouped">
-          <div class="buttons">
-            <button class="button is-primary" v-if="isAddedToCart < 0" @click="addToCart(product)">{{ $t('AddToCartLabel') }}</button>
-            <button class="button is-text" v-if="isAddedToCart >= 0" @click="removeFromCart(product)">{{ $t('RemoveFromCartLabel') }}</button>
-          </div>
-           <div class="select is-rounded is-small">
-            <select @change="onSelectQuantity(product)" v-model="quanlity">
-              <option v-for="quantity in quantityArray" :value="quantity" :key="`product-element-${quantity}`">{{ quantity }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
     </div>
-    <nuxt-link
-      class="details"
-      :to="localePath({
-        name: 'product-id',
-        params: {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          rating: product.ratings,
-          reviews: product.reviews,
-          isAddedBtn: product.isAddedBtn
-        }
-      })"
-    >
-    </nuxt-link>
+    <nuxt-link class="details" :to="localePath({name: 'product-id',params: {id: id}})"></nuxt-link>
   </div>
 </template>
 
@@ -70,7 +42,9 @@ import _ from 'lodash';
 export default {
   name: 'ProductSummary',
   components: {
-    AppRating: () => import('@/components/rating/index')
+    AppRating: () => import('@/components/rating/index'),
+    AppLove: () => import('@/components/icon/love/heart'),
+    AppCart: () => import('@/components/icon/cart'),
   },
   props: {
     product: {
@@ -98,20 +72,20 @@ export default {
     cart() {
       return this.$store.state.cart.products
     },
-    arrFavourite() {
-      return this.$store.state.favourite.products
-    },
     id() {
       return this.product && this.product.id ? this.product.id : 0
     },
+    cover() {
+      return this.product && this.product.cover ? this.product.cover : null
+    },
+    images() {
+      return this.product && this.product.images ? this.product.images : []
+    },
+    sapo() {
+      return this.product && this.product.sapo ? this.product.sapo : ''
+    },
     isAddedToCart() {
       let index = _.findIndex(this.cart, (p) => {
-        return p.product.id == this.id
-      });
-      return index;
-    },
-    isFavourite() {
-      let index = _.findIndex(this.arrFavourite, (p) => {
         return p.product.id == this.id
       });
       return index;
@@ -130,6 +104,9 @@ export default {
     },
     price() {
       return this.product && this.product.price ? this.product.price : 0
+    },
+    priceUnitSign() {
+      return this.product && this.product.priceUnitSign ? this.product.priceUnitSign : ''
     }
   },
 
@@ -140,17 +117,6 @@ export default {
     },
     removeFromCart (product) {
       this.$store.dispatch('cart/removeFromCart', product);
-    },
-    saveToFavorite (product) {
-      if( ! this.isLoggedIn ) {
-        this.onGloalEmit('OnDialogIndex', { index: 1})
-        return;
-      }
-
-      this.$store.dispatch('favourite/addToFavourite', product);
-    },
-    removeFromFavourite (product) {
-      this.$store.dispatch('favourite/removeFromFavourite', product);
     },
     onSelectQuantity (product) {
       if( this.isAddedToCart ) {

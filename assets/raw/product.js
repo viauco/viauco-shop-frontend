@@ -1,110 +1,27 @@
-export const raw =  [
-    {
-      id: 1,
-      title: 'Product 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 50,
-      ratings: 3,
-      reviews: 5,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 2,
-      title: 'Product 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 35,
-      ratings: 5,
-      reviews: 10,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 3,
-      title: 'Product 3',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 110,
-      ratings: 2,
-      reviews: 3,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 4,
-      title: 'Product 4',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 50,
-      ratings: 1,
-      reviews: 0,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 5,
-      title: 'Product 5',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 35,
-      ratings: 4,
-      reviews: 2,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 6,
-      title: 'Product 6',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 110,
-      ratings: 5,
-      reviews: 1,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 7,
-      title: 'Product 7',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 50,
-      ratings: 5,
-      reviews: 7,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 8,
-      title: 'Product 8',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 35,
-      ratings: 3,
-      reviews: 0,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    },
-    {
-      id: 9,
-      title: 'Product 9',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      price: 110,
-      ratings: 4,
-      reviews: 2,
-      isAddedToCart: false,
-      isAddedBtn: false,
-      isFavourite: false,
-      quantity: 1
-    }
-  ];
+import _ from 'lodash';
+
+let products = [];
+let images = [];
+for(let j = 0; j < 5; j++){
+  images.push({
+    id: j+1,
+    image:'https://loremflickr.com/1280/960'
+  });
+}
+for(let i = 0; i < 9; i++) {
+  products.push({
+    id: i+1,
+    title: ['Product',' ' ,i  + 1].join(''),
+    sapo: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    cover: 'https://loremflickr.com/1280/960',
+    images: images,
+    price: 50 + i*2,
+    priceUnit: 'USD',
+    priceUnitSign: '$',
+    ratings: _.random(1, 10),
+    reviews: _.random(1, 10),
+    quantity: _.random(1, 10),
+  });
+}
+export const raw =  products;

@@ -6,19 +6,19 @@
         <div class="site-footer__title">Viauco</div> 
         <ul class="site-footer__list multipart">
           <li class="site-footer__item">
-            <a href="/about-us" class="">About us</a>
+            <nuxt-link :to="localePath({name: 'apps-about'})">About us</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/contact-us" class="">Contact us </a>
+            <nuxt-link :to="localePath({name: 'apps-contact'})">Contact us</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/why-alibaba" class="">Why</a>
+            <nuxt-link :to="localePath({name: 'apps-why'})">Why</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/loyalty" class="">Loyalty</a>
+            <nuxt-link :to="localePath({name: 'apps-term'})">Term</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/policy" class="">Policy</a>
+            <nuxt-link :to="localePath({name: 'apps-policy'})">Policy</nuxt-link>
           </li>
         </ul>
       </div> 
@@ -27,22 +27,22 @@
         <div class="site-footer__title">Further</div> 
         <ul class="site-footer__list">
           <li class="site-footer__item">
-            <a href="/charter-ticket" class="">Ticket</a>
+            <nuxt-link :to="localePath({name: 'index'})">Ticket</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/purchase-guide?section=domestic-flight" class="">Domitic flight</a>
+            <nuxt-link :to="localePath({name: 'index'})">Domitic flight</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/purchase-guide?section=international-flight" class="">International flight</a>
+            <nuxt-link :to="localePath({name: 'index'})">International flight</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/purchase-guide?section=train" class="">Train</a>
+            <nuxt-link :to="localePath({name: 'index'})">Train</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/purchase-guide?section=bus" class="">Bus</a>
+            <nuxt-link :to="localePath({name: 'index'})">Bus</nuxt-link>
           </li> 
           <li class="site-footer__item">
-            <a href="/purchase-guide?section=international-hotel" class="">Hotel</a>
+            <nuxt-link :to="localePath({name: 'index'})">Hotel</nuxt-link>
           </li> 
         </ul>
       </div> 
