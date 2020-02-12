@@ -1,9 +1,8 @@
 <template>
   <div v-if="product">
     <div class="card-image">
-      <figure class="image">
-        <el-image :src="cover" :alt="title" />
-      </figure>
+      <el-image class="w-100 c---product-summary-image" fit="fill" :src="cover" :alt="title" lazy/>
+      
     </div>
     <div class="card-content">
       <div class="media">

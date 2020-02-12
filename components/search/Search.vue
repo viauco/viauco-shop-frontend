@@ -27,12 +27,17 @@ export default {
 	computed: {
 		placeholder () {
 			return 'Search...';
-		}
+		},
+		q() {
+			let query = this.$route.query.q;
+			this.value = query;
+      		return query
+    	},
 	},
 
 	methods: {
 		search (value) {
-			
+			this.$router.push(this.localePath({ name: 'search', query:{ q: value} } ) )
 		}
 	}
 }

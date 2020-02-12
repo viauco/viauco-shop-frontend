@@ -11,7 +11,8 @@ $iconSize: 1rem;
 $logoSize: 3rem;
 $iconColor: rgba(255,165,0,.92);
 $footerColor: #e1e1e1;
-
+$productSummaryHeight: 180px;
+$productDetailCoverHeight: 300px;
 html, body{
     min-height: 100vh;
     min-width: 100vw;
@@ -202,4 +203,10 @@ html, body{
 }
 .app---border-radius-circle-important{
     border-radius: 50% !important;
+}
+.c---product-summary-image{
+    height: $productSummaryHeight;
+}
+.c---product-detail-cover-image{
+    max-height: $productDetailCoverHeight;
 }

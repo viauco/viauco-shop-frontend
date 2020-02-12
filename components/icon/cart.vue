@@ -11,6 +11,10 @@ export default {
         item:{
             type: Object,
             require: true
+        },
+        quanlity:{
+            type: Number,
+            default: 1
         }
     },
     computed: {
@@ -29,13 +33,16 @@ export default {
             });
             return index >= 0 ? true : false;
         },
+        qlty() {
+            return this.quanlity
+        },
         actionMethod() {
             return this.isActive ? 'cart/removeFromCart' : 'cart/addToCart'
         },
         actionArgs() {
             return {
                 product: this.product,
-                quanlity: 1
+                quanlity: this.qlty
             }
         }
     },

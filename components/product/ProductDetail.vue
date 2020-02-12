@@ -1,19 +1,23 @@
 <template>
   <div v-if="product">
     <div class="card-image">
-      <figure class="image">
-        <el-image :src="cover" :alt="title" />
-      </figure>
+      <ProductGallery :item="product" />
+      <!--<el-image class="w-100 c---product-detail-cover-image" fit="scale-down" :src="cover" :alt="title" lazy/>-->
     </div>
-    <div class="card-content">
+    <div class="card-content mt-2">
       <div class="media">
         <div class="media-content">
           <p class="title is-4">{{ title }}</p>
         </div>
         <div>
-          <button class="button is-small">
+          <button class="button is-small app---border-radius-circle-important">
             <span class="icon is-small">
               <app-love :id="id"/>
+            </span>
+          </button>
+          <button class="button is-small app---border-radius-circle-important">
+            <span class="icon is-small">
+              <app-cart :item="product" />
             </span>
           </button>
         </div>
@@ -28,19 +32,6 @@
           <span class="title is-4"><strong>{{priceUnitSign}}{{ price }}</strong></span>
         </p>
       </div>
-      <div class="card-footer btn-actions">
-        <div class="card-footer-item field is-grouped">
-          <div class="buttons">
-            <button class="button is-primary" v-if="isAddedToCart < 0" @click="addToCart(product)">{{ $t('AddToCartLabel') }}</button>
-            <button class="button is-text" v-if="isAddedToCart >= 0" @click="removeFromCart(product)">{{ $t('RemoveFromCartLabel') }}</button>
-          </div>
-           <div class="select is-rounded is-small">
-            <select @change="onSelectQuantity(product)" v-model="quanlity">
-              <option v-for="quantity in quantityArray" :value="quantity" :key="`product-element-${quantity}`">{{ quantity }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -51,27 +42,16 @@ export default {
   name: 'ProductDetail',
   components: {
     AppRating: () => import('@/components/rating/index'),
-    AppLove: () => import('@/components/icon/love/heart')
+    AppLove: () => import('@/components/icon/love/heart'),
+    AppCart: () => import('@/components/icon/cart'),
+    ProductGallery: () => import('@/components/product/Gallery'),
   },
-  data () {
-    return {
-      quanlity: 1,
-    }
-  },
-
-  mounted () {
-    
-    if (this.product && this.product.quantity) {
-      this.quanlity = this.product.quantity;
-    }
-  },
-
   computed: {
     products () {
       return this.$store.state.product.products;
     },
     id() {
-      return this.$route.params.id;
+      return this.$route.params.id ? parseInt(this.$route.params.id) : 0;
     },
     product() {
       return this.products.find(product => product.id == this.id);
@@ -81,18 +61,6 @@ export default {
     },
     images() {
       return this.product && this.product.images ? this.product.images : []
-    },
-    quantityArray() {
-      return Array(20).fill().map((x,i)=> i + 1)
-    },
-    cart() {
-      return this.$store.state.cart.products
-    },
-    isAddedToCart() {
-      let index = _.findIndex(this.cart, (p) => {
-        return p.product.id == this.id
-      });
-      return index;
     },
     title() {
       return this.product && this.product.title ? this.product.title : ''
@@ -114,19 +82,6 @@ export default {
     }
   },
 
-  methods: {
-    addToCart (product) {
-      this.$store.dispatch('cart/addToCart', {product: product, quantity: this.quanlity});
-    },
-    removeFromCart (product) {
-      this.$store.dispatch('cart/removeFromCart', product);
-    },
-    onSelectQuantity (product) {
-      if( this.isAddedToCart ) {
-        this.$store.dispatch('card/addToCard',{ product: product, quanlity: this.quanlity});
-      }
-    }
-  }
 }
 </script>
 

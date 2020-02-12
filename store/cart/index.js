@@ -39,7 +39,7 @@ export const actions = {
         context.commit("SET_CART", products)
         return Promise.resolve(true);
     },
-    async removeFromCart(context, product) {
+    async removeFromCart(context, {product, quanlity}) {
         let products = _.cloneDeep(context.state.products);
         let index = _.findIndex(products,(p) => {
             return p.product.id == product.id
