@@ -3,7 +3,7 @@ import _ from 'lodash';
 let products = [];
 
 
-for(let i = 0; i < 100; i++) {
+for(let i = 0; i < 122; i++) {
   let images = [];
   let random = _.random(1, 55);
   let image = ['/products/compress/', random, '.jpg'].join('');
