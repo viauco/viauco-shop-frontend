@@ -31,7 +31,7 @@
     "babel-runtime": "latest",
     "bluebird": "latest",
     "bulma": "latest",
-    "element-ui": "^2.13.0",
+    "element-ui": "latest",
     "filereader-polyfill": "latest",
     "intersection-observer": "latest",
     "localforage": "latest",
@@ -48,10 +48,10 @@
     "vue-star-rating": "latest",
     "vuelidate": "latest",
     "vuex": "latest",
-    "xmldom": "^0.2.1"
+    "xmldom": "latest"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "@nuxtjs/dotenv": "latest",
     "@nuxtjs/google-analytics": "latest",
