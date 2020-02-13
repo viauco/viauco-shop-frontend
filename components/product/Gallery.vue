@@ -1,18 +1,16 @@
 <template>
-<div class="columns is-multiline">
+<div class="app---gallery is-multiline">
     <gallery :images="images" :index="index" @close="index = null" />
-    <div
-      class="column is-one-quarter-desktop is-half-tablet"
-      v-for="(image, imageIndex) in images"
-      :key="imageIndex"
-      @click="index = imageIndex"
-    >
-        <div class="card">
-            <div class="card-image">
-                <el-image class="w-100 c---product-summary-image" fit="fill" :src="image" alt="" lazy/>
+    <el-carousel :interval="5000" arrow="never" indicator-position="outside">
+        <el-carousel-item v-for="(image, imageIndex) in images" :key="imageIndex">
+        
+            <div class="card clickable" @click="index = imageIndex">
+                <div class="card-image">
+                    <el-image class="w-100" fit="cover" :src="image" alt="" lazy/>
+                </div>
             </div>
-        </div>
-    </div>
+        </el-carousel-item>
+    </el-carousel>
 </div>
 </template>
 <script>

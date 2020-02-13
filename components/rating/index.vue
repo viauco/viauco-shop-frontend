@@ -5,6 +5,7 @@
         active-color="rgba(255, 165, 0, 0.92)"
         :rating="rating"
         v-bind:star-size="size"
+        :show-rating="false"
         :read-only="disable">
     </star-rating>
 </template>

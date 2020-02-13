@@ -1,38 +1,42 @@
 <template>
-  <div v-if="product">
-    <div class="card-image">
+<div v-if="product" class="c---product-summary">
+  <nuxt-link class="details" :to="localePath({name: 'product-id',params: {id: id}})">
+    <div class="card-image c---product-summary-card-image-overlay">
       <el-image class="w-100 c---product-summary-image" fit="cover" :src="cover" :alt="title" lazy/>
+      <div class="c---product-summary-overlay">
+        <div class="columns">
+          <div class="column">
+            <p class="">
+              <app-love :id="id" class="clickable"/>
+              <app-cart :item="product" class="clickable"/>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
           <p class="title is-4 line-1" :title="title">{{ title }}</p>
         </div>
-        <div>
-          <button class="button is-small app---border-radius-circle-important">
-            <span class="icon is-small">
-              <app-love :id="id"/>
-            </span>
-          </button>
-          <button class="button is-small app---border-radius-circle-important">
-            <span class="icon is-small">
-              <app-cart :item="product" />
-            </span>
-          </button>
-        </div>
       </div>
       <div class="content is-clearfix">
-        <p class="line-3">{{ sapo }}</p>
-        <div class="is-pulled-left">
-          <app-rating :rating="ratings" v-bind:disable="true" />
+        <p class="line-3" :title="sapo">{{ sapo }}</p>
+        <div class="columns pt-0 pb-0">
+          <div class="column is-pulled-left">
+            <app-rating :size="20" :rating="ratings" v-bind:disable="true" />
+          </div>
+          <div class="column">
+            <p class="is-pulled-right">
+              <span class="title is-5"><strong>{{ priceUnitSign }}{{ price }}</strong></span>
+              <app-cart :item="product" class="clickable"/>
+            </p>
+          </div>
         </div>
-        <p class="is-pulled-right">
-          <span class="title is-4"><strong>{{ priceUnitSign }}{{ price }}</strong></span>
-        </p>
       </div>
     </div>
-    <nuxt-link class="details" :to="localePath({name: 'product-id',params: {id: id}})"></nuxt-link>
-  </div>
+  </nuxt-link>
+</div>
 </template>
 
 <script>
@@ -50,26 +54,8 @@ export default {
       default: null
     }
   },
-  data () {
-    return {
-      quanlity: 1,
-    }
-  },
-
-  mounted () {
-    
-    if (this.$props.product.quantity > 1) {
-      this.quanlity = this.$props.product.quantity;
-    }
-  },
-
+  
   computed: {
-    quantityArray() {
-      return Array(20).fill().map((x,i)=> i + 1)
-    },
-    cart() {
-      return this.$store.state.cart.products
-    },
     id() {
       return this.product && this.product.id ? this.product.id : 0
     },
@@ -81,12 +67,6 @@ export default {
     },
     sapo() {
       return this.product && this.product.sapo ? this.product.sapo : ''
-    },
-    isAddedToCart() {
-      let index = _.findIndex(this.cart, (p) => {
-        return p.product.id == this.id
-      });
-      return index;
     },
     title() {
       return this.product && this.product.title ? this.product.title : ''
@@ -106,54 +86,9 @@ export default {
     priceUnitSign() {
       return this.product && this.product.priceUnitSign ? this.product.priceUnitSign : ''
     }
-  },
-
-  methods: {
-    addToCart (product) {
-      console.log('add to card')
-      this.$store.dispatch('cart/addToCart', {product: product, quantity: this.quanlity});
-    },
-    removeFromCart (product) {
-      this.$store.dispatch('cart/removeFromCart', product);
-    },
-    onSelectQuantity (product) {
-      if( this.isAddedToCart ) {
-        this.$store.dispatch('card/addToCard',{ product: product, quanlity: this.quanlity});
-      }
-    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
- .details {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-
-    &:hover {
-      border: 1px solid #51bafc;
-    }
- }
- .button,
- .select {
-   z-index: 2;
- }
- .select {
-   position: absolute;
-   right: 15px;
-   bottom: 35px;
- }
- .card-content {
-   padding: 0;
- }
- .buttons {
-   margin: 0;
- }
-</style>
 
 

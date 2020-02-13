@@ -219,3 +219,42 @@ html, body{
 .c---product-detail-cover-image{
     max-height: $productDetailCoverHeight;
 }
+.c---product-summary .card-content{
+    padding: 0;
+}
+.c---product-summary .media{
+    margin-bottom: 0.5rem;
+}
+.c---product-summary .c---product-summary-image:hover{
+    background: #646464;
+}
+
+.c---product-summary-overlay {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.c---product-summary-card-image-overlay:hover .c---product-summary-image{
+    opacity: 0.2;
+}
+.c---product-summary-card-image-overlay:hover .c---product-summary-overlay{
+    opacity: 1.5;
+}
+.c---product-summary-overlay .app---icon{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.c---product-summary-overlay .app---love-inactive.app---icon {
+    fill: #010101;
+}
+.c---product-summary-overlay .app---love-active.app---icon {
+    fill: rgba(222, 84, 3, 0.92);;
+}
+.app---gallery .el-carousel__container{
+    height: 400px;
+}

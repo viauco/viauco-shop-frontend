@@ -37,7 +37,7 @@ export default {
 
 	methods: {
 		search (value) {
-			this.$router.push(this.localePath({ name: 'search', query:{ q: value} } ) )
+			this.$router.push(this.localePath({ name: 'index', query:{ q: value} } ) )
 		}
 	}
 }
