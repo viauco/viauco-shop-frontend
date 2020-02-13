@@ -122,7 +122,8 @@ module.exports = {
         }
       }
     }],
-    'nuxt-socket-io'
+    'nuxt-socket-io',
+    '@bazzite/nuxt-optimized-images',
   ],
   /*
   ** Axios module configuration
@@ -177,11 +178,7 @@ module.exports = {
       }
     ]
   },
-  watchers: {
-    webpack: {
-      aggregateTimeout: 300,
-      poll: 1000,
-      ignored: ['/node_modules/**', '/assets/**', '/static/**']
-    }
+  optimizedImages: {
+    optimizeImages: true
   }
 }
