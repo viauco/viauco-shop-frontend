@@ -1,21 +1,32 @@
 <template>
-  <div class="columns is-centered is-multiline">
-    <div class="card column is-one-quarter" v-for="product in arrProduct" :key="product.id">
-      <VmProduct :product="product" />
+<div class="section" v-if="queryPageCount > 1">
+  <div class="container">
+    <div class="columns is-centered is-multiline">
+      <div class="card column is-one-quarter" v-for="product in arrProduct" :key="product.id">
+        <VmProduct :product="product" />
+      </div>
+      <div class="section" >
+        
+      </div>
+      <div class="section" v-if="arrProduct.length === 0">
+        <div class="container">
+          <p>{{ $t('NoProductLabel') }}</p>
+        </div>
+      </div>
     </div>
-    <div class="section" v-if="queryPageCount > 1">
-      <el-pagination
-        :page-size="queryLimit"
-        layout="prev, pager, next"
-        :total="queryTotal"
-        @size-change="OnPageChange"
-        @current-change="OnPageChange">
-      </el-pagination>
-    </div>
-    <div class="section" v-if="arrProduct.length === 0">
-      <p>{{ $t('NoProductLabel') }}</p>
+    <div class="container" v-if="queryPageCount > 1">
+      <div class="columns is-centered is-multiline">
+        <el-pagination
+          :page-size="queryLimit"
+          layout="prev, pager, next"
+          :total="queryTotal"
+          @size-change="OnPageChange"
+          @current-change="OnPageChange">
+        </el-pagination>
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -37,8 +48,13 @@ export default {
     searchProducts() {
       let q = this.q;
       if( !q || q.length <= 0 ){ return this.products }
+      let query = q.toLowerCase();
+      var regex = new RegExp(query, 'i')
       return _.filter(this.products,(item) => {
-        return item.title.indexOf(q)>-1;
+        return (item.title && item.title.search(regex) > -1) || 
+                (item.price && (item.price.toString()).search(regex) > -1) || 
+                (item.sapo && item.sapo.search(regex) > -1) || 
+                (item.description && item.description.search(regex) > -1);
       });
     },
     queryPage() {
@@ -57,7 +73,7 @@ export default {
       return this.queryOffset + this.queryLimit
     },
     queryTotal() {
-      return this.products.length
+      return this.searchProducts.length
     },
     queryPageCount() {
       return this.queryLimit > 0 ? Math.ceil(this.queryTotal/this.queryLimit) : 0

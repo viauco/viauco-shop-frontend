@@ -1,21 +1,32 @@
 <template>
-  <div class="columns is-centered is-multiline">
-    <div class="card column is-one-quarter" v-for="product in arrProduct" :key="product.id">
-      <VmProduct :product="product" />
+<div class="section" v-if="queryPageCount > 1">
+  <div class="container">
+    <div class="columns is-centered is-multiline">
+      <div class="card column is-one-quarter" v-for="product in arrProduct" :key="product.id">
+        <VmProduct :product="product" />
+      </div>
+      <div class="section" >
+        
+      </div>
+      <div class="section" v-if="arrProduct.length === 0">
+        <div class="container">
+          <p>{{ $t('NoProductLabel') }}</p>
+        </div>
+      </div>
     </div>
-    <div class="section" v-if="queryPageCount > 1">
-      <el-pagination
-        :page-size="queryLimit"
-        layout="prev, pager, next"
-        :total="queryTotal"
-        @size-change="OnPageChange"
-        @current-change="OnPageChange">
-      </el-pagination>
-    </div>
-    <div class="section" v-if="arrProduct.length === 0">
-      <p>{{ $t('NoProductLabel') }}</p>
+    <div class="container" v-if="queryPageCount > 1">
+      <div class="columns is-centered is-multiline">
+        <el-pagination
+          :page-size="queryLimit"
+          layout="prev, pager, next"
+          :total="queryTotal"
+          @size-change="OnPageChange"
+          @current-change="OnPageChange">
+        </el-pagination>
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>

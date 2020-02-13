@@ -1,13 +1,12 @@
 <template>
   <div v-if="product">
     <div class="card-image">
-      <el-image class="w-100 c---product-summary-image" fit="fill" :src="cover" :alt="title" lazy/>
-      
+      <el-image class="w-100 c---product-summary-image" fit="cover" :src="cover" :alt="title" lazy/>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ title }}</p>
+          <p class="title is-4 line-1" :title="title">{{ title }}</p>
         </div>
         <div>
           <button class="button is-small app---border-radius-circle-important">
@@ -23,7 +22,7 @@
         </div>
       </div>
       <div class="content is-clearfix">
-        <p>{{ sapo }}</p>
+        <p class="line-3">{{ sapo }}</p>
         <div class="is-pulled-left">
           <app-rating :rating="ratings" v-bind:disable="true" />
         </div>

@@ -1,6 +1,15 @@
 *:focus {
     outline: none;
 }
+$lineSizes: (1, 2, 3, 4, 5);
+@each $size in $lineSizes {
+    .line-#{$size} {
+        display: -webkit-box;
+        -webkit-line-clamp: #{$size};
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
 
 $mainColor: #646464;
 $mainBackground: #fff;
