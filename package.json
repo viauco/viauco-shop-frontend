@@ -32,6 +32,7 @@
     "bluebird": "latest",
     "bulma": "latest",
     "element-ui": "latest",
+    "faker": "^4.1.0",
     "filereader-polyfill": "latest",
     "intersection-observer": "latest",
     "localforage": "latest",

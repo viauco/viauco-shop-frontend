@@ -5,7 +5,7 @@
 </template>
 <script>
 //see https://leungwensen.github.io/svg-icon
-import { svg  } from './sprite'
+//import { svg  } from './sprite'
 export default {
     name: 'AppIcon',
     props:{
@@ -31,8 +31,11 @@ export default {
         _svgId() {
             return ['#', this._id].join('')
         },
+        _svgFile() {
+            return ['/images/sprites/', this._file, '.svg'].join('')
+        },
         _svgLink() {
-            return [this._svg[this._file], this._svgId].join('');
+            return [this._svgFile, this._svgId].join('');
         }
     }
 }
