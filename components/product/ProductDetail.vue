@@ -1,10 +1,19 @@
 <template>
-  <div v-if="product">
-    <div class="card-image">
-      <ProductGallery :item="product" />
-      <!--<el-image class="w-100 c---product-detail-cover-image" fit="scale-down" :src="cover" :alt="title" lazy/>-->
-    </div>
+  <div v-if="product" class="mt-3">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :to="localePath({name:'index'})">Home</el-breadcrumb-item>
+      <el-breadcrumb-item>Category</el-breadcrumb-item>
+      <el-breadcrumb-item>Product detail</el-breadcrumb-item>
+    </el-breadcrumb>
     <div class="card-content mt-2">
+      <div class="columns">
+        <div class="column">
+          <ProductGallery :item="product" />
+        </div>
+        <div class="column">
+
+        </div>
+      </div>
       <div class="media">
         <div class="media-content">
           <p class="title is-4">{{ title }}</p>

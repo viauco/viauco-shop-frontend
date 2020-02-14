@@ -32,7 +32,7 @@
 <script>
 
 export default {
-  name: 'ProductList',
+  name: 'ProductListSearch',
   
   components: { 
     VmProduct: () => import('@/components/product/ProductSummary')
@@ -41,6 +41,21 @@ export default {
   computed: {
     products () {
       return this.$store.state.product.products;
+    },
+    q() {
+      return this.$route.query.q
+    },
+    searchProducts() {
+      let q = this.q;
+      if( !q || q.length <= 0 ){ return this.products }
+      let query = q.toLowerCase();
+      var regex = new RegExp(query, 'i')
+      return _.filter(this.products,(item) => {
+        return (item.title && item.title.search(regex) > -1) || 
+                (item.price && (item.price.toString()).search(regex) > -1) || 
+                (item.sapo && item.sapo.search(regex) > -1) || 
+                (item.description && item.description.search(regex) > -1);
+      });
     },
     queryPage() {
       let page = this.$route.query.page ? parseInt( this.$route.query.page ) : 1;
@@ -58,20 +73,22 @@ export default {
       return this.queryOffset + this.queryLimit
     },
     queryTotal() {
-      return this.products.length
+      return this.searchProducts.length
     },
     queryPageCount() {
       return this.queryLimit > 0 ? Math.ceil(this.queryTotal/this.queryLimit) : 0
     },
     arrProduct () {
-      return this.products.slice(this.queryOffset, this.queryEnd);
-    }
+      return this.searchProducts.slice(this.queryOffset, this.queryEnd);
+    },
+    
   },
   methods:{
     OnPageChange(p) {
       this.$router.push( this.localePath({name: 'index', query:{
         page: p,
-        limit: this.queryLimit
+        limit: this.queryLimit,
+        q: this.q
       }}))
     }
   }

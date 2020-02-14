@@ -1,6 +1,6 @@
 <template>
 <div class="hero is-medium is-bold">
-  <img src="@/assets/images/flight.jpg" alt="">
+  <img src="/images/flight.jpg" alt="">
 </div>
 </template>
 <script>
