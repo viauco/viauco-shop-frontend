@@ -5,7 +5,7 @@
         active-color="rgba(255, 165, 0, 0.92)"
         :rating="rating"
         v-bind:star-size="size"
-        :show-rating="false"
+        :show-rating="showRating"
         :read-only="disable">
     </star-rating>
 </template>
@@ -25,6 +25,10 @@ export default {
         disable:{
             type: Boolean,
             default: true
+        },
+        showRating:{
+            type: Boolean,
+            default: false
         }
     },
     components: {

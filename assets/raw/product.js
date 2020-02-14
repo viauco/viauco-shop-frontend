@@ -6,7 +6,7 @@ const host = 'https://cdn.jsdelivr.net/gh/viauco/viauco-static';
 let products = [];
 
 
-for(let i = 0; i < 522; i++) {
+for(let i = 0; i < 1000; i++) {
   let images = [];
   let random = 1;
   let image = [ host, '/images/products/compress/1.jpg'].join('');
@@ -37,8 +37,9 @@ for(let i = 0; i < 522; i++) {
     priceUnitSign: '$',
     ratings: _.random(1, 10),
     reviews: _.random(1, 10),
+    likes: _.random(1, 10),
     quantity: _.random(1, 10),
-    sell: _.random(1, 10),
+    sells: _.random(1, 10),
     phone: faker.phone.phoneNumber(),
     company:{
       id: 1,

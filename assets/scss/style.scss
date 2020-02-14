@@ -258,3 +258,21 @@ html, body{
 .app---gallery .el-carousel__container{
     height: 400px;
 }
+.c---product-summary-overlay .app-sharing-network {
+    color: rgba(222, 84, 3, 0.92);
+    margin: 1px;
+}
+.app---product-detail .app-sharing-network {
+    color: rgba(222, 84, 3, 0.92);
+    margin: 5px;
+    width: 2rem;
+    height: 2rem;
+}
+.app---product-detail .app-sharing-network i{
+    font-size: 1.5rem;
+}
+.app---product-detail .app---icon.app---love  {
+    margin: 2px 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+}

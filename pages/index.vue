@@ -1,7 +1,7 @@
 <template>
   <div>
     <VmHero />
-    <div class="container mt-1 mb-1">
+    <div class="container mt-3 mb-1">
       <VmProductList/>
     </div>
   </div>

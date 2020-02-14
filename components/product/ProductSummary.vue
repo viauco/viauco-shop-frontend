@@ -1,41 +1,47 @@
 <template>
 <div v-if="product" class="c---product-summary">
-  <nuxt-link class="details" :to="localePath({name: 'product-id',params: {id: id}})">
-    <div class="card-image c---product-summary-card-image-overlay">
-      <el-image class="w-100 c---product-summary-image" fit="cover" :src="cover" :alt="title" lazy/>
-      <div class="c---product-summary-overlay">
-        <div class="columns">
-          <div class="column">
-            <p class="">
-              <app-love :id="id" class="clickable"/>
-              <app-cart :item="product" class="clickable"/>
-            </p>
-          </div>
+  
+  <div class="card-image c---product-summary-card-image-overlay">
+    <el-image class="w-100 c---product-summary-image" fit="cover" :src="cover" :alt="title" lazy/>
+    <div class="c---product-summary-overlay">
+      <div class="columns">
+        <div class="column">
+          <p class="">
+            <app-love :id="id" class="clickable"/>
+            <app-cart :item="product" class="clickable"/>
+          </p>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <app-sharing />
         </div>
       </div>
     </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-content">
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <nuxt-link class="details" :to="localePath({name: 'product-id',params: {id: id}})">
           <p class="title is-4 line-1" :title="title">{{ title }}</p>
-        </div>
+        </nuxt-link>
       </div>
-      <div class="content is-clearfix">
-        <p class="line-3" :title="sapo">{{ sapo }}</p>
-        <div class="columns pt-0 pb-0">
-          <div class="column is-pulled-left">
-            <app-rating :size="20" :rating="ratings" v-bind:disable="true" />
-          </div>
-          <div class="column">
-            <p class="is-pulled-right">
-              <span class="title is-5"><strong>{{ priceUnitSign }}{{ price }}</strong></span>
-              <app-cart :item="product" class="clickable"/>
-            </p>
-          </div>
+    </div>
+    <div class="content is-clearfix">
+      <p class="line-3" :title="sapo">{{ sapo }}</p>
+      <div class="columns pt-0 pb-0">
+        <div class="column is-pulled-left">
+          <app-rating :size="20" :rating="ratings" v-bind:disable="true" />
+        </div>
+        <div class="column">
+          <p class="is-pulled-right">
+            <span class="title is-5"><strong>{{ priceUnitSign }}{{ price }}</strong></span>
+            <app-cart :item="product" class="clickable"/>
+          </p>
         </div>
       </div>
     </div>
-  </nuxt-link>
+  </div>
 </div>
 </template>
 
@@ -47,6 +53,7 @@ export default {
     AppRating: () => import('@/components/rating/index'),
     AppLove: () => import('@/components/icon/love/heart'),
     AppCart: () => import('@/components/icon/cart'),
+    AppSharing: () => import('@/components/sharing'),
   },
   props: {
     product: {

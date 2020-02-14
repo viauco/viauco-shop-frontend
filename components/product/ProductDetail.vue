@@ -1,5 +1,5 @@
 <template>
-  <div v-if="product" class="mt-3">
+  <div v-if="product" class="mt-3 app---product-detail">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="localePath({name:'index'})">Home</el-breadcrumb-item>
       <el-breadcrumb-item>Category</el-breadcrumb-item>
@@ -9,37 +9,54 @@
       <div class="columns">
         <div class="column">
           <ProductGallery :item="product" />
+         
         </div>
         <div class="column">
-
-        </div>
-      </div>
-      <div class="media">
-        <div class="media-content">
           <p class="title is-4">{{ title }}</p>
-        </div>
-        <div>
-          <button class="button is-small app---border-radius-circle-important">
-            <span class="icon is-small">
-              <app-love :id="id"/>
+          <div class="columns is-vcentered is-centered">
+            <span class="column">
+              <app-rating :rating="ratings" v-bind:disable="false" :size="32" :id="id"/> 
             </span>
-          </button>
-          <button class="button is-small app---border-radius-circle-important">
-            <span class="icon is-small">
-              <app-cart :item="product" />
+            <span class="column">Price: <b>{{ priceUnitSign }}{{ price }}</b></span>
+            <span class="column">Amount: <b>{{ priceUnitSign }}{{ amount }}</b></span>
+            <span class="column">Discount: {{ discount*100 }}%</span>
+          </div>
+          <div class="columns is-vcentered is-centered">
+            <span class="column">Likes: {{ likes }}</span>
+            <span class="column">Ratings: {{ ratings }}</span>
+            <span class="column">Reviews: {{ reviews }}</span>
+            <span class="column">Sales: {{ sells }}</span>
+          </div>
+          
+          <div class="columns mt-2 is-vcentered is-centered">
+            <span class="column is-4">
+              <el-input-number v-model="qnty" @change="handleChangeQnty" :min="1" :max="quantity" />
             </span>
-          </button>
+            <span class="column">{{ quantity }} products</span>
+          </div>
+          <div class="columns is-vcentered is-centered">
+            <el-button type="warning" plain class="column is-vcentered">
+               Add to cart
+            </el-button>
+            <el-button type="danger" class="column is-vcentered">Buy now</el-button>
+          </div>
+          <div class="is-flex mt-2">
+            <app-sharing />
+            <app-love class="clickable"/>
+          </div>
         </div>
+
       </div>
       <div class="content is-clearfix">
-        <p>{{ description }}</p>
-        <div class="is-pulled-left">
-          <app-rating :rating="ratings" v-bind:disable="true" />
-          <p>{{ $tc('NumberReviews',{ count: reviews}) }}</p>
-        </div>
-        <p class="is-pulled-right">
-          <span class="title is-4"><strong>{{priceUnitSign}}{{ price }}</strong></span>
-        </p>
+        <el-tabs v-model="activeTab" @tab-click="handleTabClick">
+          <el-tab-pane label="Description" name="1" lazy>{{ description }}</el-tab-pane>
+          <el-tab-pane label="Parameters" name="2" lazy>{{ description }}</el-tab-pane>
+          <el-tab-pane label="Rating" name="3" lazy>{{ description }}</el-tab-pane>
+          <el-tab-pane label="Reviews" name="4" lazy>
+            <vue-disqus shortname="viauco" :language="currentLocale"/>
+          </el-tab-pane>
+          
+        </el-tabs>
       </div>
     </div>
   </div>
@@ -53,6 +70,7 @@ export default {
     AppRating: () => import('@/components/rating/index'),
     AppLove: () => import('@/components/icon/love/heart'),
     AppCart: () => import('@/components/icon/cart'),
+    AppSharing: () => import('@/components/sharing'),
     ProductGallery: () => import('@/components/product/Gallery'),
   },
   computed: {
@@ -83,46 +101,41 @@ export default {
     reviews() {
       return this.product && this.product.reviews ? this.product.reviews : 0
     },
+    sells() {
+      return this.product && this.product.sells ? this.product.sells : 0
+    },
+    likes() {
+      return this.product && this.product.likes ? this.product.likes : 0
+    },
     price() {
       return this.product && this.product.price ? this.product.price : 0
+    },
+    amount() {
+      return this.product && this.product.amount ? this.product.amount : 0
+    },
+    discount() {
+      return this.product && this.product.discount ? this.product.discount : 0
+    },
+    quantity() {
+      return this.product && this.product.quantity ? this.product.quantity : 0
     },
     priceUnitSign() {
       return this.product && this.product.priceUnitSign ? this.product.priceUnitSign : ''
     }
   },
+  methods:{
+    handleChangeQnty() {
 
+    },
+    handleTabClick(tab, event) {
+      
+    }
+  },
+  data() {
+    return {
+      qnty: 1,
+      activeTab: "1"
+    }
+  }
 }
 </script>
-
-<style lang="scss" scoped>
- .details {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-
-    &:hover {
-      border: 1px solid #51bafc;
-    }
- }
- .button,
- .select {
-   z-index: 2;
- }
- .select {
-   position: absolute;
-   right: 15px;
-   bottom: 35px;
- }
- .card-content {
-   padding: 0;
- }
- .buttons {
-   margin: 0;
- }
-</style>
-
-

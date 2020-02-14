@@ -114,6 +114,7 @@ module.exports = {
     ['nuxt-i18n', {
       locales: ['en', 'vi'],
       defaultLocale: 'en',
+      seo: false,
       vueI18n: {
         fallbackLocale: 'en',
         messages: {
@@ -124,6 +125,7 @@ module.exports = {
     }],
     'nuxt-socket-io',
     '@bazzite/nuxt-optimized-images',
+    //'nuxt-memwatch'
   ],
   /*
   ** Axios module configuration
