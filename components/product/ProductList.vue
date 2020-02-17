@@ -1,26 +1,24 @@
 <template>
-<div class="section" v-if="queryPageCount > 1">
-  <div class="container">
-    <div class="columns is-centered is-multiline">
-      <div class="column is-one-quarter" v-for="product in arrProduct" :key="product.id">
-        <VmProduct :product="product" />
-      </div>
-      <div class="section" v-if="arrProduct.length === 0">
-        <div class="container">
-          <p>{{ $t('NoProductLabel') }}</p>
-        </div>
+<div class="container" v-if="queryPageCount > 1">
+  <div class="columns is-centered is-multiline">
+    <div class="column is-one-quarter" v-for="product in arrProduct" :key="product.id">
+      <VmProduct :product="product" />
+    </div>
+    <div class="section" v-if="arrProduct.length === 0">
+      <div class="container">
+        <p>{{ $t('NoProductLabel') }}</p>
       </div>
     </div>
-    <div class="container" v-if="queryPageCount > 1">
-      <div class="columns is-centered is-multiline">
-        <el-pagination
-          :page-size="queryLimit"
-          layout="prev, pager, next"
-          :total="queryTotal"
-          @size-change="OnPageChange"
-          @current-change="OnPageChange">
-        </el-pagination>
-      </div>
+  </div>
+  <div class="container" v-if="queryPageCount > 1">
+    <div class="columns is-centered is-multiline">
+      <el-pagination
+        :page-size="queryLimit"
+        layout="prev, pager, next"
+        :total="queryTotal"
+        @size-change="OnPageChange"
+        @current-change="OnPageChange">
+      </el-pagination>
     </div>
   </div>
 </div>
